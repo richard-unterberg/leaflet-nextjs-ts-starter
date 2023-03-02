@@ -21,7 +21,12 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
     <ul className={`${listStyle}`}>
       <NavMenuItem href="/" label="Intro" icon={<Home size={navIconSize} />} />
       <NavMenuItem href="/map" label="Map Example" icon={<Compass size={navIconSize} />} />
-      <NavMenuItem href="https://github.com/" label="Github" icon={<Github size={navIconSize} />} external />
+      <NavMenuItem
+        href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"
+        label="Github"
+        icon={<Github size={navIconSize} />}
+        external
+      />
     </ul>
   )
 }
