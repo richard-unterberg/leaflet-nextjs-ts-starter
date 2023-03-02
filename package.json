@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/chroma-js": "^2.4.0",
     "@types/leaflet": "^1.9.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "18.13.0",

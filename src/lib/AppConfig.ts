@@ -43,7 +43,7 @@ export const AppColor = {
     },
   },
   light: {
-    hex: colors.slate[300],
+    hex: colors.slate[200],
     tw: {
       text: 'text-slate-300',
       bg: 'bg-slate-300',
