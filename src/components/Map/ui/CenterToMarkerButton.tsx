@@ -16,7 +16,7 @@ export const MapCenterToMarkerButton: React.FC<{
   const [isTouched, setIsTouched] = useState(false)
 
   const touch = useCallback(() => {
-    if (!isTouched && !map) {
+    if (!isTouched && map) {
       setIsTouched(true)
     }
   }, [map])
