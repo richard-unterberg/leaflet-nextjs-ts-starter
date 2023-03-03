@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import MapTopBar from '@components/TopBar'
 
+import { AppConfig } from '@lib/AppConfig'
 import { Places } from '@lib/Places'
 
 import MapContextProvider from './MapContextProvider'
@@ -29,17 +30,18 @@ const MapInner = () => {
   })
   const isLoading = !map || !leafletWindow
 
-  // center/zoom map based on markers locations if everythings
+  // center/zoom map based on markers locations
   useEffect(() => {
     if (map && leafletWindow) {
       map.flyTo(markerCenterPos, markerMinZoom, { animate: false })
+      map.setMinZoom(markerMinZoom)
     }
   }, [map, leafletWindow])
 
   return (
     <>
       <MapTopBar />
-      <LeafletMap center={markerCenterPos} zoom={markerMinZoom} minZoom={markerMinZoom}>
+      <LeafletMap center={markerCenterPos} zoom={markerMinZoom} maxZoom={AppConfig.maxZoom}>
         {!isLoading ? (
           <>
             <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
