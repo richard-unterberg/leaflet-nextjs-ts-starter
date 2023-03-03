@@ -13,6 +13,7 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - 🔗 next.js ready route nav module
 - 😏 typescript + strict lint setup
 - 🐛 custom marker icons
+- 🥐 custom hooks for getting marker data and map context
 
 ## 📊 Coming up
 
@@ -21,7 +22,6 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - my location
 - modified zoom in / zoom out (replace icons)
 - global styling for map ui components
-- collect useful set / get functionalities from leaflet and collect them in a hook for better dx
 - fix error when setting new coordinates in hot reload "Map container is already initialized."
 - create breakpoint hook synced with tailwind breakpoint which is usable in js
 
