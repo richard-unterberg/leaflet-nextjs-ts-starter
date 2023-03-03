@@ -26,6 +26,7 @@ export const AppColor = {
     tw: {
       text: 'text-sky-700',
       bg: 'bg-sky-700',
+      border: 'border-sky-700',
     },
   },
   secondary: {
@@ -33,6 +34,7 @@ export const AppColor = {
     tw: {
       text: 'text-slate-600',
       bg: 'bg-slate-600',
+      border: 'border-slate-600',
     },
   },
   dark: {
@@ -40,6 +42,7 @@ export const AppColor = {
     tw: {
       text: 'text-slate-900',
       bg: 'bg-slate-900',
+      border: 'border-slate-900',
     },
   },
   light: {
@@ -47,6 +50,7 @@ export const AppColor = {
     tw: {
       text: 'text-slate-300',
       bg: 'bg-slate-300',
+      border: 'border-slate-300',
     },
   },
   white: {
@@ -54,6 +58,7 @@ export const AppColor = {
     tw: {
       text: 'text-slate-50',
       bg: 'bg-slate-50',
+      border: 'border-slate-50',
     },
   },
 }
