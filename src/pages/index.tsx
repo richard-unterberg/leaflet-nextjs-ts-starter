@@ -1,4 +1,5 @@
 import { Leaf } from 'lucide-react'
+import Head from 'next/head'
 import Link from 'next/link'
 
 import { AppColor, MapConfig } from '@lib/AppConfig'
@@ -7,6 +8,19 @@ import NavMenu from '@components/common/NavMenu'
 
 const Home = () => (
   <div className="container mx-auto max-w-2xl max-md:max-w-none p-3">
+    <Head>
+      <title>Jumpstart your new leaflet mapping Project with next.js and typescript 🤩</title>
+      <meta
+        property="og:title"
+        content="Jumpstart your new leaflet mapping Project with next.js and typescript 🤩"
+        key="title"
+      />
+      <meta
+        name="description"
+        content="next-leaflet-starter-typescript is an extensible next.js starter template for the leaflet-maps-react plugin. Written in typescript,
+      visually enhanced by tailwind and lucide-react icons."
+      />
+    </Head>
     <header className="mt-10 items-top gap-4 md:flex">
       <Leaf size={MapConfig.ui.bigIconSize} color={AppColor.primary.hex} className="mt-2" />
       <div>
@@ -39,7 +53,7 @@ const Home = () => (
         <span>. ✨</span>
       </p>
       <p className="my-3">
-        <span> 🤝 Free to contribute on </span>
+        <span> 🤝 Feel free to contribute on </span>
         <Link
           href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"
           className={AppColor.primary.tw.text}
