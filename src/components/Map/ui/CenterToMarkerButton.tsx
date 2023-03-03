@@ -16,10 +16,10 @@ export const MapCenterToMarkerButton: React.FC<{
   const [isTouched, setIsTouched] = useState(false)
 
   const touch = useCallback(() => {
-    if (!isTouched) {
+    if (!isTouched && !map) {
       setIsTouched(true)
     }
-  }, [])
+  }, [map])
 
   useMapEvents({
     move() {
@@ -30,14 +30,14 @@ export const MapCenterToMarkerButton: React.FC<{
     },
   })
 
-  const handleClick = () => {
-    if (!isTouched) return
+  const handleClick = useCallback(() => {
+    if (!isTouched && !map) return
 
     map.flyTo(center, MapConfig.minZoom)
     map.once('moveend', () => {
       setIsTouched(false)
     })
-  }
+  }, [map])
 
   return (
     <button
