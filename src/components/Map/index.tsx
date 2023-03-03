@@ -8,13 +8,13 @@ import MapContextProvider from '@components/Map/MapContextProvider'
 import MapTopBar from '../TopBar'
 import CustomMarker from './ui/CustomMarker'
 
-export const CenterToMarkerButton = dynamic(
+const CenterToMarkerButton = dynamic(
   async () => (await import('./ui/CenterToMarkerButton')).MapCenterToMarkerButton,
   {
     ssr: false,
   },
 )
-export const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap, {
+const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap, {
   ssr: false,
 })
 

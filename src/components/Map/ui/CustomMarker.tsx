@@ -9,7 +9,7 @@ import useLeafletWindow from '@lib/hooks/useLeafletWindow'
 
 import { MapContext } from '../MapContextProvider'
 
-export const LeafletMarker = dynamic(async () => (await import('react-leaflet')).Marker, {
+const LeafletMarker = dynamic(async () => (await import('react-leaflet')).Marker, {
   ssr: false,
 })
 
