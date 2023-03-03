@@ -1,14 +1,14 @@
 {
-  "name": "typescript-next-leaflet-starter",
+  "name": "next-leaflet-starter-typescript",
   "homepage": "https://typescript-next-leaflet-starter.vercel.app",
   "version": "0.1.0",
   "author": "Richard Unterberg <https://github.com/richard-unterberg>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/colbyfayock/next-leaflet-starter"
+    "url": "https://github.com/richard-unterberg/next-leaflet-starter-typescript/"
   },
   "bugs": {
-    "url": "https://github.com/colbyfayock/next-leaflet-starter/issues"
+    "url": "https://github.com/richard-unterberg/next-leaflet-starter-typescript/issues"
   },
   "scripts": {
     "dev": "next dev",
@@ -49,7 +49,6 @@
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.3",
-    "react-icons": "^4.7.1",
     "typescript": "4.9.5"
   }
 }
