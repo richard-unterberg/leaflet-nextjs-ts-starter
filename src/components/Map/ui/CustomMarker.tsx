@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useContext } from 'react'
 import { renderToString } from 'react-dom/server'
 
-import { AppColor, MapConfig } from '@lib/AppConfig'
+import { AppConfig } from '@lib/AppConfig'
 import useLeafletWindow from '@lib/hooks/useLeafletWindow'
 
 import { MapContext } from '../MapContextProvider'
@@ -14,8 +14,8 @@ const LeafletMarker = dynamic(async () => (await import('react-leaflet')).Marker
 })
 
 const MarkerComponent = () => (
-  <div className={`p-2 inline-block rounded-full ${AppColor.primary.tw.bg}`}>
-    <Leaf className="bg-none" size={MapConfig.ui.mapIconSize} color={AppColor.white.hex} />
+  <div className="p-2 inline-block rounded-full bg-primary text-white">
+    <Leaf className="bg-none" size={AppConfig.ui.mapIconSize} />
   </div>
 )
 
@@ -38,7 +38,7 @@ const CustomMarker = ({ position }: CustomMarkerProps) => {
       position={position}
       icon={LeafletWindow.divIcon({
         html: renderToString(<MarkerComponent />),
-        iconAnchor: [MapConfig.ui.mapIconSize / 2, MapConfig.ui.mapIconSize / 2],
+        iconAnchor: [AppConfig.ui.mapIconSize / 2, AppConfig.ui.mapIconSize / 2],
       })}
       eventHandlers={{ click: handleMarkerClick }}
     />

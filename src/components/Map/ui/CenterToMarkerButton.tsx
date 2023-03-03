@@ -3,7 +3,7 @@ import { Shrink } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useMap, useMapEvents } from 'react-leaflet'
 
-import { AppColor, MapConfig } from '@lib/AppConfig'
+import { AppConfig } from '@lib/AppConfig'
 
 interface MapCenterToMarkerButtonProps {
   center: LatLngExpression
@@ -33,7 +33,7 @@ export const MapCenterToMarkerButton: React.FC<{
   const handleClick = useCallback(() => {
     if (!isTouched && !map) return
 
-    map.flyTo(center, MapConfig.minZoom)
+    map.flyTo(center, AppConfig.minZoom)
     map.once('moveend', () => {
       setIsTouched(false)
     })
@@ -43,12 +43,12 @@ export const MapCenterToMarkerButton: React.FC<{
     <button
       type="button"
       style={{ zIndex: 400 }}
-      className={`button absolute rounded top-2 right-2 p-2 shadow-md ${AppColor.white.tw.bg} ${
-        isTouched ? AppColor.dark.tw.text : AppColor.light.tw.text
+      className={`button absolute rounded top-2 right-2 p-2 shadow-md bg-white ${
+        isTouched ? 'text-dark' : 'text-light'
       } `}
       onClick={() => handleClick()}
     >
-      <Shrink size={MapConfig.ui.mapIconSize} />
+      <Shrink size={AppConfig.ui.mapIconSize} />
     </button>
   )
 }

@@ -23,6 +23,7 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - global styling for map ui components
 - collect useful set / get functionalities from leaflet and collect them in a hook for better dx
 - fix error when setting new coordinates in hot reload "Map container is already initialized."
+- create breakpoint hook synced with tailwind breakpoint which is usable in js
 
 ## 🎇 Getting Started
 

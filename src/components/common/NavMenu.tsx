@@ -1,6 +1,6 @@
 import { Compass, Github, Home } from 'lucide-react'
 
-import { AppColor, MapConfig, NavMenuVariant } from '@lib/AppConfig'
+import { AppConfig, NavMenuVariant } from '@lib/AppConfig'
 
 import NavMenuItem from './NavMenuItem'
 
@@ -10,12 +10,12 @@ interface NavMenuProps {
 
 const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
   const navIconSize =
-    variant === NavMenuVariant.TOPNAV ? MapConfig.ui.topBarIconSize : MapConfig.ui.menuIconSize
+    variant === NavMenuVariant.TOPNAV ? AppConfig.ui.topBarIconSize : AppConfig.ui.menuIconSize
 
   const listStyle =
     variant === NavMenuVariant.TOPNAV
-      ? `flex text-white gap-4 text-lg ${AppColor.white.tw.text} `
-      : `flex flex-col justify-between gap-1 w-fit ${AppColor.primary.tw.text}`
+      ? `flex text-white gap-4 text-lg text-white`
+      : `flex flex-col justify-between gap-1 w-fit text-primary`
 
   return (
     <ul className={`${listStyle}`}>

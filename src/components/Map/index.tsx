@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import { MapConfig } from '@lib/AppConfig'
+import { AppConfig } from '@lib/AppConfig'
 import { Coordinates } from '@lib/Coordinates'
 
 import MapContextProvider from '@components/Map/MapContextProvider'
@@ -21,8 +21,8 @@ const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap
 const Map = () => (
   <MapContextProvider>
     <MapTopBar />
-    <LeafletMap center={MapConfig.baseCenter} zoom={MapConfig.minZoom}>
-      <CenterToMarkerButton center={MapConfig.baseCenter} />
+    <LeafletMap center={AppConfig.baseCenter} zoom={AppConfig.minZoom}>
+      <CenterToMarkerButton center={AppConfig.baseCenter} />
       <>
         {Coordinates.map(item => (
           <CustomMarker key={(item.position as number[]).join('')} position={item.position} />

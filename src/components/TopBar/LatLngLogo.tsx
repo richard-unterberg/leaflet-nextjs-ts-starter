@@ -28,7 +28,7 @@ const LatLngLogo = () => {
   }, [map])
 
   return (
-    <div className="text-2xl font-black leading-none flex gap-2">
+    <div className="text-2xl font-black leading-none flex gap-2 text-white">
       <Compass size={50} className="text-slate-50" />
       <div className="text-slate-50">
         {lat}

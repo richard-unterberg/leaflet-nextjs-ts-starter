@@ -2,7 +2,7 @@ import Leaflet, { LatLngExpression, MapOptions } from 'leaflet'
 import { useContext, useEffect } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
-import { AppColor, MapConfig } from '@lib/AppConfig'
+import { AppConfig } from '@lib/AppConfig'
 
 import { MapContext } from '@components/Map/MapContextProvider'
 
@@ -32,15 +32,16 @@ export const LeafletMap: React.FC<
     <div
       className="relative"
       style={{
-        marginTop: `${MapConfig.ui.topBarHeight}px`,
-        height: `calc(100vh - ${MapConfig.ui.topBarHeight}px)`,
+        marginTop: `${AppConfig.ui.topBarHeight}px`,
+        height: `calc(100vh - ${AppConfig.ui.topBarHeight}px)`,
       }}
     >
       <MapContainer
         ref={e => setMap && setMap(e || undefined)}
-        className={`w-full h-full absolute outline-0 ${AppColor.white.tw.bg}`}
-        minZoom={MapConfig.minZoom}
-        maxZoom={MapConfig.maxZoom}
+        className="w-full h-full absolute outline-0 text-white"
+        minZoom={AppConfig.minZoom}
+        maxZoom={AppConfig.maxZoom}
+        zoomControl={false}
         {...options}
       >
         <TileLayer
