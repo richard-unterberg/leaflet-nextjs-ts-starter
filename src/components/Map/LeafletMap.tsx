@@ -16,18 +16,6 @@ export const LeafletMap: React.FC<
   const mapInstance = useContext(MapContext)
   const setMap = mapInstance?.setMap
 
-  // setup marker icons
-  useEffect(() => {
-    async function init() {
-      await Leaflet.Icon.Default.mergeOptions({
-        iconRetinaUrl: 'leaflet/images/marker-icon-2x.png',
-        iconUrl: 'leaflet/images/marker-icon.png',
-        shadowUrl: 'leaflet/images/marker-shadow.png',
-      })
-    }
-    init()
-  }, [])
-
   return (
     <div
       className="relative"
