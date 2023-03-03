@@ -6,10 +6,11 @@
   "trailingComma": "all",
   "printWidth": 110,
   "importOrder": [
-    "^@src/(.*)$",
+    "^@root/(.*)$",
     "^@pages/(.*)$",
-    "^@lib/(.*)$",
     "^@components/(.*)$",
+    "^@src/(.*)$",
+    "^@lib/(.*)$",
     "^[./]"
   ],
   "importOrderSortSpecifiers": true,
