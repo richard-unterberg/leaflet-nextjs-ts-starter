@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* FIXME: find a way to reset styles of leaflet in components */
+.leaflet-marker-icon.leaflet-div-icon {
+  background: none;
+  border: none !important;
+}
