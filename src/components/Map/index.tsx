@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 
-import { Places } from '@root/src/lib/Places'
-import useLeafletWindow from '@root/src/lib/hooks/useLeafletWindow'
-
 import MapTopBar from '@components/TopBar'
 
+import { Places } from '@lib/Places'
+
 import MapContextProvider from './MapContextProvider'
+import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
 import useMarker from './useMarker'
 

@@ -1,9 +1,10 @@
 import { LatLngExpression, Map } from 'leaflet'
 import { useMemo } from 'react'
 
-import { AppConfig } from '@root/src/lib/AppConfig'
-import { PlacesType } from '@root/src/lib/Places'
-import useLeafletWindow from '@root/src/lib/hooks/useLeafletWindow'
+import useLeafletWindow from '@components/Map/useLeafletWindow'
+
+import { AppConfig } from '@lib/AppConfig'
+import { PlacesType } from '@lib/Places'
 
 interface useMapDataValues {
   locations?: PlacesType
