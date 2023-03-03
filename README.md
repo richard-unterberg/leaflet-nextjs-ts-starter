@@ -12,15 +12,16 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - 🧠 custom context to control and read leaflet instance from outside - thx @Flo301
 - 🔗 next.js ready route nav module
 - 😏 typescript + strict lint setup
+- 🐛 custom marker icons
 
 ## 📊 Coming up
 
 - custom marker categories
-- custom marker icons
 - marker cluster
 - my location
 - modified zoom in / zoom out (replace icons)
 - global styling for map ui components
+- collect useful set / get functionalities from leaflet and collect them in a hook for better dx
 
 ## 🎇 Getting Started
 
