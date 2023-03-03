@@ -1,6 +1,11 @@
 import { LatLngExpression } from 'leaflet'
 
-export const Coordinates: { position: LatLngExpression }[] = [
+interface PlaceValues {
+  position: LatLngExpression
+}
+export type PlacesType = PlaceValues[]
+
+export const Places: PlacesType = [
   {
     position: [52.051977014580125, 8.531494086782844],
   },
@@ -23,7 +28,7 @@ export const Coordinates: { position: LatLngExpression }[] = [
     position: [52.02022192326546, 8.583775371420124],
   },
   {
-    position: [51.92250630485653, 8.456059315349323],
+    position: [51.99494772863581, 8.560429425686753],
   },
   {
     position: [51.99274772863586, 8.560429425686753],

@@ -1,19 +1,23 @@
 import { LatLngExpression } from 'leaflet'
 import { Shrink } from 'lucide-react'
 import { useCallback, useState } from 'react'
-import { useMap, useMapEvents } from 'react-leaflet'
+import { useMapEvents } from 'react-leaflet'
 
 import { AppConfig } from '@lib/AppConfig'
 
-interface MapCenterToMarkerButtonProps {
+import useMapContext from '../useMapContext'
+
+interface CenterButtonProps {
   center: LatLngExpression
+  zoom: number
 }
 
-export const MapCenterToMarkerButton: React.FC<{
-  center: MapCenterToMarkerButtonProps['center']
-}> = ({ center }: MapCenterToMarkerButtonProps) => {
-  const map = useMap()
+export const CenterButton: React.FC<{
+  center: CenterButtonProps['center']
+  zoom: CenterButtonProps['zoom']
+}> = ({ center, zoom }: CenterButtonProps) => {
   const [isTouched, setIsTouched] = useState(false)
+  const { map } = useMapContext()
 
   const touch = useCallback(() => {
     if (!isTouched && map) {
@@ -31,13 +35,13 @@ export const MapCenterToMarkerButton: React.FC<{
   })
 
   const handleClick = useCallback(() => {
-    if (!isTouched && !map) return
+    if (!isTouched || !map) return
 
-    map.flyTo(center, AppConfig.minZoom)
+    map.flyTo(center, zoom)
     map.once('moveend', () => {
       setIsTouched(false)
     })
-  }, [map])
+  }, [map, isTouched])
 
   return (
     <button

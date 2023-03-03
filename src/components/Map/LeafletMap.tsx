@@ -1,10 +1,9 @@
-import Leaflet, { LatLngExpression, MapOptions } from 'leaflet'
-import { useContext, useEffect } from 'react'
+import { LatLngExpression, MapOptions } from 'leaflet'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { AppConfig } from '@lib/AppConfig'
 
-import { MapContext } from '@components/Map/MapContextProvider'
+import useMapContext from './useMapContext'
 
 export const LeafletMap: React.FC<
   {
@@ -13,8 +12,7 @@ export const LeafletMap: React.FC<
     zoom: number
   } & MapOptions
 > = ({ ...options }) => {
-  const mapInstance = useContext(MapContext)
-  const setMap = mapInstance?.setMap
+  const { setMap } = useMapContext()
 
   return (
     <div
@@ -27,8 +25,6 @@ export const LeafletMap: React.FC<
       <MapContainer
         ref={e => setMap && setMap(e || undefined)}
         className="w-full h-full absolute outline-0 text-white"
-        minZoom={AppConfig.minZoom}
-        maxZoom={AppConfig.maxZoom}
         zoomControl={false}
         {...options}
       >

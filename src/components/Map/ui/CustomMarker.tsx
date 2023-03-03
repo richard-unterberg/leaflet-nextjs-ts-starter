@@ -1,19 +1,13 @@
-import { LatLngExpression } from 'leaflet'
+import Leaflet, { LatLngExpression } from 'leaflet'
 import { Leaf } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import { useContext } from 'react'
 import { renderToString } from 'react-dom/server'
+import { Marker } from 'react-leaflet'
 
 import { AppConfig } from '@lib/AppConfig'
-import useLeafletWindow from '@lib/hooks/useLeafletWindow'
 
-import { MapContext } from '../MapContextProvider'
+import useMapContext from '../useMapContext'
 
-const LeafletMarker = dynamic(async () => (await import('react-leaflet')).Marker, {
-  ssr: false,
-})
-
-const MarkerComponent = () => (
+const MarkerIconElement = () => (
   <div className="p-2 inline-block rounded-full bg-primary text-white">
     <Leaf className="bg-none" size={AppConfig.ui.mapIconSize} />
   </div>
@@ -23,26 +17,21 @@ interface CustomMarkerProps {
   position: LatLngExpression
 }
 
-const CustomMarker = ({ position }: CustomMarkerProps) => {
-  const { LeafletWindow } = useLeafletWindow()
-  const mapInstance = useContext(MapContext)
-  const map = mapInstance?.map
+export const CustomMarker: React.FC<{
+  position: CustomMarkerProps['position']
+}> = ({ position }: CustomMarkerProps) => {
+  const { map } = useMapContext()
 
-  const handleMarkerClick = () => {
-    if (!map) return
-    map.panTo(position)
-  }
+  const handleMarkerClick = () => map?.panTo(position)
 
   return (
-    <LeafletMarker
+    <Marker
       position={position}
-      icon={LeafletWindow.divIcon({
-        html: renderToString(<MarkerComponent />),
+      icon={Leaflet?.divIcon({
+        html: renderToString(<MarkerIconElement />),
         iconAnchor: [AppConfig.ui.mapIconSize / 2, AppConfig.ui.mapIconSize / 2],
       })}
       eventHandlers={{ click: handleMarkerClick }}
     />
   )
 }
-
-export default CustomMarker

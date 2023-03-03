@@ -1,13 +1,11 @@
 import Leaflet from 'leaflet'
 import { Compass } from 'lucide-react'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { MapContext } from '@components/Map/MapContextProvider'
+import useMapContext from '@components/Map/useMapContext'
 
 const LatLngLogo = () => {
-  const mapInstance = useContext(MapContext)
-  const map = mapInstance?.map
-
+  const { map } = useMapContext()
   const [location, setLocation] = useState<Leaflet.LatLng | undefined>()
   const lat = location?.lat.toFixed(4)
   const lng = location?.lng.toFixed(4)
