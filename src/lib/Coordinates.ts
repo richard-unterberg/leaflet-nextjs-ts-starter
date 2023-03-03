@@ -1,16 +1,31 @@
 import { LatLngExpression } from 'leaflet'
 
-export const Coordinates: { name: string; position: LatLngExpression }[] = [
+export const Coordinates: { position: LatLngExpression }[] = [
   {
-    name: 'marker 1',
     position: [52.051977014580125, 8.531494086782844],
   },
   {
-    name: 'marker 2',
     position: [52.02022592597971, 8.530780645829076],
   },
   {
-    name: 'marker 3',
     position: [52.022468698328275, 8.50583167463131],
+  },
+  {
+    position: [51.99739839338658, 8.59544834428681],
+  },
+  {
+    position: [52.01219274931668, 8.599568218099812],
+  },
+  {
+    position: [52.0119, 8.563032],
+  },
+  {
+    position: [52.02022192326546, 8.583775371420124],
+  },
+  {
+    position: [51.92250630485653, 8.456059315349323],
+  },
+  {
+    position: [51.99274772863586, 8.560429425686753],
   },
 ]

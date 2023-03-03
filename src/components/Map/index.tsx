@@ -25,7 +25,7 @@ const Map = () => (
       <CenterToMarkerButton center={MapConfig.baseCenter} />
       <>
         {Coordinates.map(item => (
-          <CustomMarker key={item.name} position={item.position} />
+          <CustomMarker key={(item.position as number[]).join('')} position={item.position} />
         ))}
       </>
     </LeafletMap>

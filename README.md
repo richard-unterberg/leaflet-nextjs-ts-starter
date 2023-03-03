@@ -22,6 +22,7 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - modified zoom in / zoom out (replace icons)
 - global styling for map ui components
 - collect useful set / get functionalities from leaflet and collect them in a hook for better dx
+- fix error when setting new coordinates in hot reload "Map container is already initialized."
 
 ## 🎇 Getting Started
 
