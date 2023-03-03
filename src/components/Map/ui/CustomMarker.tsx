@@ -13,7 +13,7 @@ export const LeafletMarker = dynamic(async () => (await import('react-leaflet'))
   ssr: false,
 })
 
-export const MarkerComponent = () => (
+const MarkerComponent = () => (
   <div className={`p-2 inline-block rounded-full ${AppColor.primary.tw.bg}`}>
     <Leaf className="bg-none" size={MapConfig.ui.mapIconSize} color={AppColor.white.hex} />
   </div>
