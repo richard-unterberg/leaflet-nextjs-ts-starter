@@ -25,7 +25,6 @@ export const LeafletMap: React.FC<
       <MapContainer
         ref={e => setMap && setMap(e || undefined)}
         className="w-full h-full absolute outline-0 text-white"
-        zoomControl={false}
         {...options}
       >
         <TileLayer
