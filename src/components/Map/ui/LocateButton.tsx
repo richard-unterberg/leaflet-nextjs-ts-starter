@@ -5,8 +5,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { AppConfig } from '@lib/AppConfig'
 import MarkerCategories, { Category } from '@lib/MarkerCategories'
 
+import { CustomMarker } from '../Marker'
 import useMapContext from '../useMapContext'
-import { CustomMarker } from './CustomMarker'
 
 export const LocateButton: React.FC = () => {
   const { map } = useMapContext()
