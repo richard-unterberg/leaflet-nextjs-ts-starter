@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
+import colors from 'tailwindcss/colors'
 
 import MapTopBar from '@components/TopBar'
 
@@ -13,10 +14,13 @@ import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
 import useMarker from './useMarker'
 
+const Cluster = dynamic(async () => (await import('./Marker/ClusterGroup')).MarkerClusterGroup(), {
+  ssr: false,
+})
 const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
   ssr: false,
 })
-const CustomMarker = dynamic(async () => (await import('./ui/CustomMarker')).CustomMarker, {
+const CustomMarker = dynamic(async () => (await import('./Marker')).CustomMarker, {
   ssr: false,
 })
 const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
@@ -76,14 +80,16 @@ const MapInner = () => {
             <>
               <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
               <LocateButton />
-              {Places.map(item => (
-                <CustomMarker
-                  icon={MarkerCategories[item.category].icon}
-                  color={MarkerCategories[item.category].color}
-                  key={(item.position as number[]).join('')}
-                  position={item.position}
-                />
-              ))}
+              <Cluster color={colors.amber['400']} chunkedLoading>
+                {Places.map(item => (
+                  <CustomMarker
+                    icon={MarkerCategories[item.category].icon}
+                    color={MarkerCategories[item.category].color}
+                    key={(item.position as number[]).join('')}
+                    position={item.position}
+                  />
+                ))}
+              </Cluster>
             </>
           ) : (
             <>l</>
