@@ -47,7 +47,7 @@ export const CenterButton: React.FC<{
     <button
       type="button"
       style={{ zIndex: 400 }}
-      className={`button absolute rounded top-2 right-2 p-2 shadow-md bg-white ${
+      className={`button absolute rounded top-2 right-3 p-2 shadow-md bg-white ${
         isTouched ? 'text-dark' : 'text-light'
       } `}
       onClick={() => handleClick()}
