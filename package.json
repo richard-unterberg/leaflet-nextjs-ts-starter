@@ -17,7 +17,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "13.1.6",
     "@react-leaflet/core": "^2.1.0",
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
