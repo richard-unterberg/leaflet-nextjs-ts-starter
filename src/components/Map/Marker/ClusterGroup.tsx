@@ -6,8 +6,8 @@ import {
 } from '@react-leaflet/core'
 import Leaflet, { LeafletMouseEventHandlerFn } from 'leaflet'
 import 'leaflet.markercluster'
-import { Maximize2 } from 'lucide-react'
-import React from 'react'
+import { LucideProps } from 'lucide-react'
+import React, { FunctionComponent } from 'react'
 
 import { AppConfig } from '@lib/AppConfig'
 
@@ -26,6 +26,7 @@ type ClusterEvents = {
 
 type MarkerClusterControl = Leaflet.MarkerClusterGroupOptions & {
   children: React.ReactNode
+  icon: FunctionComponent<LucideProps>
   color: string
 } & ClusterEvents
 
@@ -33,12 +34,15 @@ const CreateMarkerClusterGroup = (props: MarkerClusterControl, context: LeafletC
   const { divIcon } = useLeafletDivIcon()
 
   const markerClusterGroup = new Leaflet.MarkerClusterGroup({
-    iconCreateFunction: () =>
+    disableClusteringAtZoom: 14,
+    spiderfyDistanceMultiplier: 3,
+    iconCreateFunction: cluster =>
       divIcon({
-        source: <MarkerIconWrapper color={props.color} icon={Maximize2} />,
+        source: (
+          <MarkerIconWrapper color={props.color} icon={props.icon} label={`${cluster.getChildCount()}`} />
+        ),
         anchor: [AppConfig.ui.markerIconSize / 2, AppConfig.ui.markerIconSize / 2],
       }),
-    animateAddingMarkers: true,
     ...props,
   })
 

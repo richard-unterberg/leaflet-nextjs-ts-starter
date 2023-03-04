@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
-import colors from 'tailwindcss/colors'
 
 import MapTopBar from '@components/TopBar'
 
 import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories from '@lib/MarkerCategories'
+import MarkerCategories, { Category } from '@lib/MarkerCategories'
 import { Places } from '@lib/Places'
 
 import MapContextProvider from './MapContextProvider'
@@ -33,7 +32,7 @@ const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap
 const MapInner = () => {
   const { map } = useMapContext()
   const leafletWindow = useLeafletWindow()
-  const { markerCenterPos, markerMinZoom } = useMarker({
+  const { clustersByCategory, markerCenterPos, markerMinZoom } = useMarker({
     locations: Places,
     map,
   })
@@ -80,16 +79,23 @@ const MapInner = () => {
             <>
               <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
               <LocateButton />
-              <Cluster color={colors.amber['400']} chunkedLoading>
-                {Places.map(item => (
-                  <CustomMarker
-                    icon={MarkerCategories[item.category].icon}
-                    color={MarkerCategories[item.category].color}
-                    key={(item.position as number[]).join('')}
-                    position={item.position}
-                  />
-                ))}
-              </Cluster>
+              {Object.values(clustersByCategory).map(item => (
+                <Cluster
+                  key={item.category}
+                  icon={MarkerCategories[item.category as Category].icon}
+                  color={MarkerCategories[item.category as Category].color}
+                  chunkedLoading
+                >
+                  {item.markers.map(marker => (
+                    <CustomMarker
+                      icon={MarkerCategories[marker.category].icon}
+                      color={MarkerCategories[marker.category].color}
+                      key={(marker.position as number[]).join('')}
+                      position={marker.position}
+                    />
+                  ))}
+                </Cluster>
+              ))}
             </>
           ) : (
             <>l</>
