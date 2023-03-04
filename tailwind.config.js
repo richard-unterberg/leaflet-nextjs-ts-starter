@@ -11,6 +11,7 @@ module.exports = {
       dark: colors.slate[900],
       light: colors.slate[200],
       white: colors.slate[50],
+      error: colors.red[700],
     },
   },
   plugins: [],

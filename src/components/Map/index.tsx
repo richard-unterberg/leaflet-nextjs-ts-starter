@@ -5,7 +5,7 @@ import { useResizeDetector } from 'react-resize-detector'
 import MapTopBar from '@components/TopBar'
 
 import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories from '@lib/MarkerCategories'
+import MarkerCategories, { Category } from '@lib/MarkerCategories'
 import { Places } from '@lib/Places'
 
 import MapContextProvider from './MapContextProvider'
@@ -13,10 +13,13 @@ import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
 import useMarker from './useMarker'
 
+const Cluster = dynamic(async () => (await import('./Marker/ClusterGroup')).MarkerClusterGroup(), {
+  ssr: false,
+})
 const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
   ssr: false,
 })
-const CustomMarker = dynamic(async () => (await import('./ui/CustomMarker')).CustomMarker, {
+const CustomMarker = dynamic(async () => (await import('./Marker')).CustomMarker, {
   ssr: false,
 })
 const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
@@ -29,7 +32,7 @@ const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap
 const MapInner = () => {
   const { map } = useMapContext()
   const leafletWindow = useLeafletWindow()
-  const { markerCenterPos, markerMinZoom } = useMarker({
+  const { clustersByCategory, markerCenterPos, markerMinZoom } = useMarker({
     locations: Places,
     map,
   })
@@ -76,13 +79,22 @@ const MapInner = () => {
             <>
               <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
               <LocateButton />
-              {Places.map(item => (
-                <CustomMarker
-                  icon={MarkerCategories[item.category].icon}
-                  color={MarkerCategories[item.category].color}
-                  key={(item.position as number[]).join('')}
-                  position={item.position}
-                />
+              {Object.values(clustersByCategory).map(item => (
+                <Cluster
+                  key={item.category}
+                  icon={MarkerCategories[item.category as Category].icon}
+                  color={MarkerCategories[item.category as Category].color}
+                  chunkedLoading
+                >
+                  {item.markers.map(marker => (
+                    <CustomMarker
+                      icon={MarkerCategories[marker.category].icon}
+                      color={MarkerCategories[marker.category].color}
+                      key={(marker.position as number[]).join('')}
+                      position={marker.position}
+                    />
+                  ))}
+                </Cluster>
               ))}
             </>
           ) : (
