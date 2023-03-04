@@ -1,9 +1,11 @@
 import { LatLngExpression, Map } from 'leaflet'
+import { chain } from 'lodash'
 import { useMemo } from 'react'
 
 import useLeafletWindow from '@components/Map/useLeafletWindow'
 
 import { AppConfig } from '@lib/AppConfig'
+import { Category } from '@lib/MarkerCategories'
 import { PlacesType } from '@lib/Places'
 
 interface useMapDataValues {
@@ -40,7 +42,16 @@ const useMarker = ({ locations, map }: useMapDataValues) => {
     return map?.getBoundsZoom(allMarkerBounds)
   }, [leafletWindow, map, allMarkerBounds])
 
-  return { markerCenterPos, markerMinZoom }
+  const clustersByCategory = useMemo(
+    () =>
+      chain(locations)
+        .groupBy('category')
+        .map((value, key: Category | string) => ({ category: key, markers: value }))
+        .value(),
+    [locations],
+  )
+
+  return { clustersByCategory, markerCenterPos, markerMinZoom }
 }
 
 export default useMarker
