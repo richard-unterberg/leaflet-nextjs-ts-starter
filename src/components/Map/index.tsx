@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
+import { useResizeDetector } from 'react-resize-detector'
 
 import MapTopBar from '@components/TopBar'
 
@@ -32,9 +33,26 @@ const MapInner = () => {
     locations: Places,
     map,
   })
-  const isLoading = !map || !leafletWindow
 
-  // center/zoom map based on markers locations
+  const {
+    width: viewportWidth,
+    height: viewportHeight,
+    ref: viewportRef,
+  } = useResizeDetector({
+    refreshMode: 'debounce',
+    refreshRate: 400,
+  })
+
+  const isLoading = !map || !leafletWindow || !viewportWidth
+
+  // resize: invalidate size if viewport changed
+  useEffect(() => {
+    if (map && (viewportWidth || viewportHeight)) {
+      map.invalidateSize()
+    }
+  }, [map, viewportWidth, viewportHeight])
+
+  // init: center / zoom map based on markers locations
   useEffect(() => {
     if (map && leafletWindow) {
       map.flyTo(markerCenterPos, markerMinZoom, { animate: false })
@@ -43,30 +61,40 @@ const MapInner = () => {
   }, [map, leafletWindow])
 
   return (
-    <>
+    <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
       <MapTopBar />
-      <LeafletMap center={markerCenterPos} zoom={markerMinZoom} maxZoom={AppConfig.maxZoom}>
-        {!isLoading ? (
-          <>
-            <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
-            <LocateButton />
-            {Places.map(item => (
-              <CustomMarker
-                icon={MarkerCategories[item.category].icon}
-                color={MarkerCategories[item.category].color}
-                key={(item.position as number[]).join('')}
-                position={item.position}
-              />
-            ))}
-          </>
-        ) : (
-          <>l</>
-        )}
-      </LeafletMap>
-    </>
+      <div
+        className={`absolute w-full left-0 transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
+        style={{
+          top: AppConfig.ui.topBarHeight,
+          width: viewportWidth ?? '100%',
+          height: viewportHeight ? viewportHeight - AppConfig.ui.topBarHeight : '100%',
+        }}
+      >
+        <LeafletMap center={markerCenterPos} zoom={markerMinZoom} maxZoom={AppConfig.maxZoom}>
+          {!isLoading ? (
+            <>
+              <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
+              <LocateButton />
+              {Places.map(item => (
+                <CustomMarker
+                  icon={MarkerCategories[item.category].icon}
+                  color={MarkerCategories[item.category].color}
+                  key={(item.position as number[]).join('')}
+                  position={item.position}
+                />
+              ))}
+            </>
+          ) : (
+            <>l</>
+          )}
+        </LeafletMap>
+      </div>
+    </div>
   )
 }
 
+// pass through to get context in <MapInner>
 const Map = () => (
   <MapContextProvider>
     <MapInner />
