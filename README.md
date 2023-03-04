@@ -1,4 +1,4 @@
-next.js starter for leaflet-react
+typescript next.js starter kit for leaflet-react
 ---------------------------------
 
 An extensible [next.js](https://nextjs.org/) starter kit for the [leaflet-react](https://react-leaflet.js.org/) map plugin. Template visually enhanced by [tailwind](https://tailwindcss.com/) and [lucide icons](https://lucide.dev/). ✨
@@ -13,6 +13,7 @@ Using the power of  [typescript](https://www.typescriptlang.org/) for better sca
 - 🌤 modular demo content
 - 🐛 custom marker icons
 - 📚 marker categories
+- 🫧 marker cluster by category
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
 - 🏡 custom ui components (locate me, center on markers)
 
@@ -68,9 +69,8 @@ yarn start
 
 ## 📊 Coming up (probably)
 
-- marker cluster
-- modified zoom in / zoom out
-- global styling for map ui components
+- redesign zoom in / zoom out
+- atom components for map ui
 - fix error when setting new coordinates in hot reload "Map container is already initialized."
 - create breakpoint hook synced with tailwind breakpoint which is usable in js
 
