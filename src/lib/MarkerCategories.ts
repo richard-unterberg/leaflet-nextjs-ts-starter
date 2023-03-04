@@ -1,4 +1,4 @@
-import { Car, Leaf, LocateFixed, LucideProps } from 'lucide-react'
+import { Leaf, LocateFixed, LucideProps, PersonStanding } from 'lucide-react'
 import { FunctionComponent } from 'react'
 import colors from 'tailwindcss/colors'
 
@@ -31,7 +31,7 @@ const MarkerCategories: MarkerCategorieType = {
   },
   [Category.CAT2]: {
     name: 'Category 2',
-    icon: Car,
+    icon: PersonStanding,
     color: colors.red[400],
   },
 }
