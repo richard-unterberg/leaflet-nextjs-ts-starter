@@ -7,7 +7,7 @@ export const AppConfig = {
   ui: {
     topBarHeight: 80,
     bigIconSize: 48,
-    mapIconSize: 28,
+    mapIconSize: 32,
     menuIconSize: 16,
     topBarIconSize: 24,
   },

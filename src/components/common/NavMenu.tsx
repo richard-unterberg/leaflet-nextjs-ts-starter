@@ -14,7 +14,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
 
   const listStyle =
     variant === NavMenuVariant.TOPNAV
-      ? `flex text-white gap-4 text-lg text-white`
+      ? `flex text-white gap-4 text-lg text-white text-sm md:text-base`
       : `flex flex-col justify-between gap-1 w-fit text-primary`
 
   return (

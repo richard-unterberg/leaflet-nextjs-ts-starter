@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import MapTopBar from '@components/TopBar'
 
 import { AppConfig } from '@lib/AppConfig'
+import MarkerCategories from '@lib/MarkerCategories'
 import { Places } from '@lib/Places'
 
 import MapContextProvider from './MapContextProvider'
@@ -15,6 +16,9 @@ const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButto
   ssr: false,
 })
 const CustomMarker = dynamic(async () => (await import('./ui/CustomMarker')).CustomMarker, {
+  ssr: false,
+})
+const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
   ssr: false,
 })
 const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap, {
@@ -45,8 +49,14 @@ const MapInner = () => {
         {!isLoading ? (
           <>
             <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
+            <LocateButton />
             {Places.map(item => (
-              <CustomMarker key={(item.position as number[]).join('')} position={item.position} />
+              <CustomMarker
+                icon={MarkerCategories[item.category].icon}
+                color={MarkerCategories[item.category].color}
+                key={(item.position as number[]).join('')}
+                position={item.position}
+              />
             ))}
           </>
         ) : (
