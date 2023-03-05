@@ -6,7 +6,7 @@ Setup with [typescript](https://www.typescriptlang.org/) 👐.
 
 Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
 
-## Table of Contents
+### Table of Contents
 1. [Features](#features)
 2. [Getting started](#getting-started)
     1. [Clone & Deploy with Github and Vercel](#clone-deploy)
@@ -17,7 +17,7 @@ Packed with useful components and hooks for using the map and create UI elements
 6. [Removing linting rules](#disable-lint)
 7. [No typescript?](#no-ts)
 
-## <a id="features"></a> 🎇 Features
+### <a id="features"></a> 🎇 Features
 
 - 🏇 mighty next.js 13 leaflet-react no-ssr setup
 - 😏 typescript + strict lint setup
@@ -29,9 +29,9 @@ Packed with useful components and hooks for using the map and create UI elements
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
 - 🏡 custom ui components (locate me, center on markers)
 
-## <a id="getting-started"></a> 🏎 Getting Started
+### <a id="getting-started"></a> 🏎 Getting Started
 
-### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
+#### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
 
 Create new Github repo with vercel and deploy it within minutes. Could not be easier as hitting some buttons. Shipping of private repos is possible.
 
@@ -41,7 +41,7 @@ Later: Check out your repo locally and run ```npm install``` or ```yarn``` in ro
 
 Follow Instructions for [Starting Up](#start-up)
 
-### <a id="manual-install"></a> ⚙️ Manual install
+#### <a id="manual-install"></a> ⚙️ Manual install
 
 ```bash
 git clone https://github.com/richard-unterberg/next-leaflet-starter-typescript
@@ -51,7 +51,7 @@ npm install
 yarn
 ```
 
-## <a id="start-up"></a> 🏍️ Start up
+### <a id="start-up"></a> 🏍️ Start up
 
 According the official [Next.js Docs](https://nextjs.org/docs/getting-started):
 
@@ -79,7 +79,7 @@ npm run start
 yarn start
 ```
 
-## <a id="coming-up"></a> 📊 Upcoming (probably)
+### <a id="coming-up"></a> 📊 Upcoming (probably)
 
 + redesign zoom in / zoom out
 + atom components for map ui
