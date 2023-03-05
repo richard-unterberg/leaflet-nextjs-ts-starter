@@ -32,10 +32,6 @@ const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap
 const MapInner = () => {
   const { map } = useMapContext()
   const leafletWindow = useLeafletWindow()
-  const { clustersByCategory, markerCenterPos, markerMinZoom } = useMarker({
-    locations: Places,
-    map,
-  })
 
   const {
     width: viewportWidth,
@@ -46,22 +42,28 @@ const MapInner = () => {
     refreshRate: 400,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth
+  const { clustersByCategory, allMarkersBoundCenter } = useMarker({
+    locations: Places,
+    map,
+    viewportWidth,
+    viewportHeight,
+  })
 
-  // resize: invalidate size if viewport changed
-  useEffect(() => {
-    if (map && (viewportWidth || viewportHeight)) {
-      map.invalidateSize()
-    }
-  }, [map, viewportWidth, viewportHeight])
+  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
 
-  // init: center / zoom map based on markers locations
+  /** watch position & zoom of all markers */
   useEffect(() => {
-    if (map && leafletWindow) {
-      map.flyTo(markerCenterPos, markerMinZoom, { animate: false })
-      map.setMinZoom(markerMinZoom)
+    if (!allMarkersBoundCenter || !map) return
+
+    const moveEnd = () => {
+      map.setMinZoom(allMarkersBoundCenter.minZoom - 1)
+      map.off('moveend', moveEnd)
     }
-  }, [map, leafletWindow])
+
+    map.setMinZoom(0)
+    map.flyTo(allMarkersBoundCenter.centerPos, allMarkersBoundCenter.minZoom, { animate: false })
+    map.once('moveend', moveEnd)
+  }, [allMarkersBoundCenter])
 
   return (
     <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
@@ -74,10 +76,18 @@ const MapInner = () => {
           height: viewportHeight ? viewportHeight - AppConfig.ui.topBarHeight : '100%',
         }}
       >
-        <LeafletMap center={markerCenterPos} zoom={markerMinZoom} maxZoom={AppConfig.maxZoom}>
+        <LeafletMap
+          center={allMarkersBoundCenter.centerPos}
+          zoom={allMarkersBoundCenter.minZoom}
+          maxZoom={AppConfig.maxZoom}
+          minZoom={AppConfig.minZoom}
+        >
           {!isLoading ? (
             <>
-              <CenterToMarkerButton center={markerCenterPos} zoom={markerMinZoom} />
+              <CenterToMarkerButton
+                center={allMarkersBoundCenter.centerPos}
+                zoom={allMarkersBoundCenter.minZoom}
+              />
               <LocateButton />
               {Object.values(clustersByCategory).map(item => (
                 <Cluster
