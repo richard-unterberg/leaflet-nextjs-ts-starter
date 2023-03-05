@@ -41,7 +41,7 @@ export const CenterButton: React.FC<{
     map.once('moveend', () => {
       setIsTouched(false)
     })
-  }, [map, isTouched])
+  }, [map, isTouched, zoom, center])
 
   return (
     <button
