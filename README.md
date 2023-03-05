@@ -1,19 +1,31 @@
 typescript next.js starter kit for leaflet-react
----------------------------------
+===============
 
 An extensible [next.js](https://nextjs.org/) starter kit for the [leaflet-react](https://react-leaflet.js.org/) map plugin. Template visually enhanced by [tailwind](https://tailwindcss.com/) and [lucide icons](https://lucide.dev/). ✨
-Using the power of  [typescript](https://www.typescriptlang.org/) for better scalability.
+Setup with [typescript](https://www.typescriptlang.org/) 👐.
+
+Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
+
+## Table of Contents
+1. [Features](#features)
+2. [Getting started](#features)
+    1. [Clone & Deploy with Github and Vercel](#clone--deploy-with-github-and-vercel)
+    2. [Manual install](#manual-install)
+3. [Start up](#start-up)
+4. [Coming up (probably)](#coming-up-probably)
+5. [Dependencies](#all-them-dependencies)
+6. [Removing linting rules](#how-to-remove-those-damn-linting-rules)
+7. [No typescript?](#dont-wanna-use-typscript-at-all)
 
 ## 🎇 Features
 
-- 🏇 powered by the mighty next.js 13
-- 🗺 leaflet-react no-ssr setup
+- 🏇 mighty next.js 13 leaflet-react no-ssr setup
 - 😏 typescript + strict lint setup
 - 🔗 next.js ready route nav module
 - 🌤 modular demo content
 - 🐛 custom marker icons
 - 📚 marker categories
-- 🫧 marker cluster by category
+- 🫧 marker cluster by category with matching icon+color and notification bubble with marker count
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
 - 🏡 custom ui components (locate me, center on markers)
 
@@ -39,7 +51,7 @@ npm install
 yarn
 ```
 
-## Start up
+## 🏍️ Start up
 
 According the official [Next.js Docs](https://nextjs.org/docs/getting-started):
 
@@ -69,12 +81,36 @@ yarn start
 
 ## 📊 Coming up (probably)
 
-- redesign zoom in / zoom out
-- atom components for map ui
-- fix error when setting new coordinates in hot reload "Map container is already initialized."
-- create breakpoint hook synced with tailwind breakpoint which is usable in js
++ redesign zoom in / zoom out
++ atom components for map ui
++ fix error when setting new coordinates in hot reload "Map container is already initialized."
++ breakpoint hook synced with tailwind breakpoint which is usable in js
++ multiple map instances per page
+  + not possible atm since we read the map instance directly from window object 🤫
++ add axios for fetching data
+  + move simulated "endpoint" (Places) to public folder and convert to JSON
 
-- Feel free to contribute!
+- **Feel free to contribute!** 🤗
+
+### 📦 All them dependencies?
+
+Here are the main ones:
+
+```json
+"next": "^13.2.3",
+"react": "^18.2.0",
+"react-dom": "^18.2.0",
+"react-leaflet": "^4.2.1",
+"@react-leaflet/core": "^2.1.0",
+"leaflet": "^1.9.3",
+"leaflet.markercluster": "^1.5.3",
+"react-resize-detector": "^8.0.4",
+"tailwindcss": "^3.2.6"
+"lodash": "^4.17.21",
+"lucide-react": "^0.121.0",
+```
+
+See ```package.json``` for more details and devDependencies.
 
 ### 🤯 How to remove those damn linting rules
 
@@ -84,7 +120,7 @@ I've been using them a lot on my dayjob so I can't be anymore without them.
 
 ### 📝 Don't wanna use typscript at all?
 
-See this nice javascript implementation  - My starter is heavily inspired by this one:
+See this nice javascript implementation - This repo is heavily inspired by this one:
 https://github.com/colbyfayock/next-leaflet-starter
 
 
