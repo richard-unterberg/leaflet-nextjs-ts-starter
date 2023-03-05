@@ -7,15 +7,15 @@ Setup with [typescript](https://www.typescriptlang.org/) 👐.
 Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
 
 ## Table of Contents
-1. [Features](#features)
-2. [Getting started](#features)
-    1. [Clone & Deploy with Github and Vercel](#clone--deploy-with-github-and-vercel)
-    2. [Manual install](#manual-install)
-3. [Start up](#start-up)
-4. [Coming up (probably)](#coming-up-probably)
-5. [Dependencies](#all-them-dependencies)
-6. [Removing linting rules](#how-to-remove-those-damn-linting-rules)
-7. [No typescript?](#dont-wanna-use-typscript-at-all)
+1. [Features](#🎇-features)
+2. [Getting started](#🏎-getting-started)
+    1. [Clone & Deploy with Github and Vercel](#⛴-clone--deploy-with-github-and-vercel)
+    2. [Manual install](#⚙️-manual-install)
+3. [Start up](#🏍️-start-up)
+4. [Coming up (probably)](#📊-coming-up-probably)
+5. [Dependencies](#📦-all-them-dependencies)
+6. [Removing linting rules](#🤯-how-to-remove-those-damn-linting-rules)
+7. [No typescript?](#📝-dont-wanna-use-typscript-at-all)
 
 ## 🎇 Features
 
