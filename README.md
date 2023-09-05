@@ -44,7 +44,7 @@ Follow Instructions for [Starting Up](#start-up)
 #### <a id="manual-install"></a> ⚙️ Manual install
 
 ```bash
-git clone https://github.com/richard-unterberg/next-leaflet-starter-typescript
+git clone https://github.com/richard-unterberg/leaflet-nextjs-ts-starter
 # then
 npm install
 # or
