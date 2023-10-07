@@ -1,4 +1,5 @@
 import { Marker } from 'react-leaflet'
+import ThemeConfig from 'tailwindcss/defaultTheme'
 
 import { AppConfig } from '@lib/AppConfig'
 
@@ -20,7 +21,7 @@ export const CustomMarker: React.FC<{
       position={position}
       icon={LeafletDivIcon({
         source: <MarkerIconWrapper color={color} icon={icon} />,
-        anchor: [AppConfig.ui.markerIconSize / 2, AppConfig.ui.markerIconSize / 2],
+        anchor: [(AppConfig.ui.markerIconSize + 16) / 2, (AppConfig.ui.markerIconSize + 16) / 2],
       })}
       eventHandlers={{ click: handleMarkerClick }}
     />

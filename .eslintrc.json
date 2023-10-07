@@ -23,6 +23,7 @@
     "class-methods-use-this": 0,
     "react/require-default-props": 0,
     "import/prefer-default-export": 0,
+    "react/jsx-no-useless-fragment": 1,
     "prettier/prettier": 2,
     "react/jsx-no-constructed-context-values": 0,
     "react/destructuring-assignment": 0,

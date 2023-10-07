@@ -39,7 +39,7 @@ const MapInner = () => {
     ref: viewportRef,
   } = useResizeDetector({
     refreshMode: 'debounce',
-    refreshRate: 400,
+    refreshRate: 200,
   })
 
   const { clustersByCategory, allMarkersBoundCenter } = useMarkerData({
@@ -108,7 +108,7 @@ const MapInner = () => {
               ))}
             </>
           ) : (
-            <>l</>
+            <></>
           )}
         </LeafletMapContainer>
       </div>

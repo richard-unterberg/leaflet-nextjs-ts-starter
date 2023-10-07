@@ -6,18 +6,18 @@ Setup with [typescript](https://www.typescriptlang.org/) 👐.
 
 Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
 
-## Table of Contents
+### Table of Contents
 1. [Features](#features)
-2. [Getting started](#features)
-    1. [Clone & Deploy with Github and Vercel](#clone--deploy-with-github-and-vercel)
+2. [Getting started](#getting-started)
+    1. [Clone & Deploy with Github and Vercel](#clone-deploy)
     2. [Manual install](#manual-install)
 3. [Start up](#start-up)
-4. [Coming up (probably)](#coming-up-probably)
-5. [Dependencies](#all-them-dependencies)
-6. [Removing linting rules](#how-to-remove-those-damn-linting-rules)
-7. [No typescript?](#dont-wanna-use-typscript-at-all)
+4. [Coming up (probably)](#coming-up)
+5. [Dependencies](#dependencies)
+6. [Removing linting rules](#disable-lint)
+7. [No typescript?](#no-ts)
 
-## 🎇 Features
+### <a id="features"></a> 🎇 Features
 
 - 🏇 mighty next.js 13 leaflet-react no-ssr setup
 - 😏 typescript + strict lint setup
@@ -29,9 +29,9 @@ Packed with useful components and hooks for using the map and create UI elements
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
 - 🏡 custom ui components (locate me, center on markers)
 
-## 🏎 Getting Started
+### <a id="getting-started"></a> 🏎 Getting Started
 
-### ⛴ Clone & Deploy with Github and Vercel
+#### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
 
 Create new Github repo with vercel and deploy it within minutes. Could not be easier as hitting some buttons. Shipping of private repos is possible.
 
@@ -41,7 +41,7 @@ Later: Check out your repo locally and run ```npm install``` or ```yarn``` in ro
 
 Follow Instructions for [Starting Up](#start-up)
 
-### ⚙️ Manual install
+#### <a id="manual-install"></a> ⚙️ Manual install
 
 ```bash
 git clone https://github.com/richard-unterberg/next-leaflet-starter-typescript
@@ -51,7 +51,7 @@ npm install
 yarn
 ```
 
-## 🏍️ Start up
+### <a id="start-up"></a> 🏍️ Start up
 
 According the official [Next.js Docs](https://nextjs.org/docs/getting-started):
 
@@ -79,7 +79,7 @@ npm run start
 yarn start
 ```
 
-## 📊 Coming up (probably)
+### <a id="coming-up"></a> 📊 Upcoming (probably)
 
 + redesign zoom in / zoom out
 + atom components for map ui
@@ -92,9 +92,7 @@ yarn start
 
 - **Feel free to contribute!** 🤗
 
-### 📦 All them dependencies?
-
-Here are the main ones:
+### <a id="dependencies"></a> 📦 All them dependencies
 
 ```json
 "next": "^13.2.3",
@@ -112,13 +110,13 @@ Here are the main ones:
 
 See ```package.json``` for more details and devDependencies.
 
-### 🤯 How to remove those damn linting rules
+### <a id="disable-lint"></a> 🤯 How to remove those  linting rules?
 
 You can adjust the settings mainly in ```eslint.json``` and ```tsconfig.json```.
 
 I've been using them a lot on my dayjob so I can't be anymore without them.
 
-### 📝 Don't wanna use typscript at all?
+### <a id="no-ts"></a> 📝 Don't wanna use typscript at all?
 
 See this nice javascript implementation - This repo is heavily inspired by this one:
 https://github.com/colbyfayock/next-leaflet-starter
