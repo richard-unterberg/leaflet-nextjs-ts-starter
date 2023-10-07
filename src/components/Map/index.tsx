@@ -11,9 +11,9 @@ import { Places } from '@lib/Places'
 import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
-import useMarker from './useMarker'
+import useMarkerData from './useMarkerData'
 
-const Cluster = dynamic(async () => (await import('./Marker/ClusterGroup')).MarkerClusterGroup(), {
+const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).LeafletCluster(), {
   ssr: false,
 })
 const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
@@ -25,7 +25,7 @@ const CustomMarker = dynamic(async () => (await import('./Marker')).CustomMarker
 const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
   ssr: false,
 })
-const LeafletMap = dynamic(async () => (await import('./LeafletMap')).LeafletMap, {
+const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapContainer')).LeafletMapContainer, {
   ssr: false,
 })
 
@@ -42,7 +42,7 @@ const MapInner = () => {
     refreshRate: 400,
   })
 
-  const { clustersByCategory, allMarkersBoundCenter } = useMarker({
+  const { clustersByCategory, allMarkersBoundCenter } = useMarkerData({
     locations: Places,
     map,
     viewportWidth,
@@ -76,7 +76,7 @@ const MapInner = () => {
           height: viewportHeight ? viewportHeight - AppConfig.ui.topBarHeight : '100%',
         }}
       >
-        <LeafletMap
+        <LeafletMapContainer
           center={allMarkersBoundCenter.centerPos}
           zoom={allMarkersBoundCenter.minZoom}
           maxZoom={AppConfig.maxZoom}
@@ -90,7 +90,7 @@ const MapInner = () => {
               />
               <LocateButton />
               {Object.values(clustersByCategory).map(item => (
-                <Cluster
+                <LeafletCluster
                   key={item.category}
                   icon={MarkerCategories[item.category as Category].icon}
                   color={MarkerCategories[item.category as Category].color}
@@ -104,13 +104,13 @@ const MapInner = () => {
                       position={marker.position}
                     />
                   ))}
-                </Cluster>
+                </LeafletCluster>
               ))}
             </>
           ) : (
             <>l</>
           )}
-        </LeafletMap>
+        </LeafletMapContainer>
       </div>
     </div>
   )

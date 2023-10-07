@@ -20,7 +20,7 @@ interface allMarkerPosValues {
   centerPos: LatLngExpression
 }
 
-const useMarker = ({ locations, map, viewportWidth, viewportHeight }: useMapDataValues) => {
+const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMapDataValues) => {
   const leafletWindow = useLeafletWindow()
 
   const [allMarkersBoundCenter, setAllMarkersBoundCenter] = useState<allMarkerPosValues>({
@@ -62,4 +62,4 @@ const useMarker = ({ locations, map, viewportWidth, viewportHeight }: useMapData
   return { clustersByCategory, allMarkersBoundCenter }
 }
 
-export default useMarker
+export default useMarkerData
