@@ -1,7 +1,8 @@
 {
   "name": "next-leaflet-starter-typescript",
   "homepage": "https://typescript-next-leaflet-starter.vercel.app",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "license": "MIT",
   "author": "Richard Unterberg <https://github.com/richard-unterberg>",
   "repository": {
     "type": "git",
