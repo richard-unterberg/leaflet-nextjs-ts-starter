@@ -8,7 +8,7 @@ export const AppConfig = {
     topBarHeight: 80,
     bigIconSize: 48,
     mapIconSize: 32,
-    markerIconSize: 36,
+    markerIconSize: 32,
     menuIconSize: 16,
     topBarIconSize: 24,
   },

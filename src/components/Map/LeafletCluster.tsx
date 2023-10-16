@@ -11,8 +11,8 @@ import React, { FunctionComponent } from 'react'
 
 import { AppConfig } from '@lib/AppConfig'
 
-import useLeafletDivIcon from '../useLeafletDivIcon'
-import MarkerIconWrapper from './MarkerIconWrapper'
+import LeafletDivIcon from './LeafletDivIcon'
+import MarkerIconWrapper from './Marker/MarkerIconWrapper'
 
 type ClusterEvents = {
   onClick?: LeafletMouseEventHandlerFn
@@ -31,13 +31,14 @@ type MarkerClusterControl = Leaflet.MarkerClusterGroupOptions & {
 } & ClusterEvents
 
 const CreateMarkerClusterGroup = (props: MarkerClusterControl, context: LeafletContextInterface) => {
-  const { divIcon } = useLeafletDivIcon()
-
   const markerClusterGroup = new Leaflet.MarkerClusterGroup({
-    disableClusteringAtZoom: 14,
-    spiderfyDistanceMultiplier: 3,
+    removeOutsideVisibleBounds: false,
+    spiderLegPolylineOptions: {
+      className: 'hidden',
+    },
+    // zoomToBoundsOnClick: false,
     iconCreateFunction: cluster =>
-      divIcon({
+      LeafletDivIcon({
         source: (
           <MarkerIconWrapper color={props.color} icon={props.icon} label={`${cluster.getChildCount()}`} />
         ),
@@ -52,5 +53,5 @@ const CreateMarkerClusterGroup = (props: MarkerClusterControl, context: LeafletC
   )
 }
 
-export const MarkerClusterGroup = () =>
+export const LeafletCluster = () =>
   createPathComponent<Leaflet.MarkerClusterGroup, MarkerClusterControl>(CreateMarkerClusterGroup)

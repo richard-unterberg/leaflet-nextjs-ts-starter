@@ -12,17 +12,19 @@ export interface MarkerCategoriesValues {
   name: string
   icon: FunctionComponent<LucideProps>
   color: string
+  hideInMenu?: boolean
 }
 
-type MarkerCategorieType = {
+type MarkerCategoryType = {
   [key in Category]: MarkerCategoriesValues
 }
 
-const MarkerCategories: MarkerCategorieType = {
+const MarkerCategories: MarkerCategoryType = {
   [Category.LOCATE]: {
     name: 'User Location',
     icon: LocateFixed,
     color: colors.green[400],
+    hideInMenu: false,
   },
   [Category.CAT1]: {
     name: 'Category 1',

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 
 import useMapContext from './useMapContext'
 
-export const LeafletMap: React.FC<
+export const LeafletMapContainer: React.FC<
   {
     center: LatLngExpression
     children: JSX.Element | JSX.Element[]
