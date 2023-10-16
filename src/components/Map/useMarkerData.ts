@@ -1,5 +1,5 @@
 import { LatLngExpression, Map } from 'leaflet'
-import { chain } from 'lodash'
+import _ from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 
 import useLeafletWindow from '@components/Map/useLeafletWindow'
@@ -39,14 +39,14 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
     return leafletWindow.latLngBounds(coordsSum)
   }, [leafletWindow, locations])
 
-  const clustersByCategory = useMemo(
-    () =>
-      chain(locations)
-        .groupBy('category')
-        .map((value, key: Category | string) => ({ category: key, markers: value }))
-        .value(),
-    [locations],
-  )
+  const clustersByCategory = useMemo(() => {
+    const groupedLocations = _.groupBy(locations, 'category')
+    const mappedClusters = _.map(groupedLocations, (value, key: Category | string) => ({
+      category: key,
+      markers: value,
+    }))
+    return mappedClusters
+  }, [locations])
 
   // useMemo will not work here, because we need to update the map size after the viewport size changes
   useEffect(() => {
