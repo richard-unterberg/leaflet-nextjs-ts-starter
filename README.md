@@ -104,7 +104,6 @@ yarn start
 "leaflet.markercluster": "^1.5.3",
 "react-resize-detector": "^8.0.4",
 "tailwindcss": "^3.2.6"
-"lodash": "^4.17.21",
 "lucide-react": "^0.121.0",
 ```
 
