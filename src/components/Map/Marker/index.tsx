@@ -1,5 +1,4 @@
 import { Marker } from 'react-leaflet'
-import ThemeConfig from 'tailwindcss/defaultTheme'
 
 import { AppConfig } from '@lib/AppConfig'
 

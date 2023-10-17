@@ -2,11 +2,12 @@ import { LatLngExpression } from 'leaflet'
 
 import { Category } from './MarkerCategories'
 
-interface PlaceValues {
+export interface PlaceValues {
   position: LatLngExpression
   category: Category
 }
 export type PlacesType = PlaceValues[]
+export type PlacesClusterType = Record<string, PlaceValues[]>
 
 export const Places: PlacesType = [
   {
