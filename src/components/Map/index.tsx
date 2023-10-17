@@ -76,41 +76,43 @@ const MapInner = () => {
           height: viewportHeight ? viewportHeight - AppConfig.ui.topBarHeight : '100%',
         }}
       >
-        <LeafletMapContainer
-          center={allMarkersBoundCenter.centerPos}
-          zoom={allMarkersBoundCenter.minZoom}
-          maxZoom={AppConfig.maxZoom}
-          minZoom={AppConfig.minZoom}
-        >
-          {!isLoading ? (
-            <>
-              <CenterToMarkerButton
-                center={allMarkersBoundCenter.centerPos}
-                zoom={allMarkersBoundCenter.minZoom}
-              />
-              <LocateButton />
-              {Object.values(clustersByCategory).map(item => (
-                <LeafletCluster
-                  key={item.category}
-                  icon={MarkerCategories[item.category as Category].icon}
-                  color={MarkerCategories[item.category as Category].color}
-                  chunkedLoading
-                >
-                  {item.markers.map(marker => (
-                    <CustomMarker
-                      icon={MarkerCategories[marker.category].icon}
-                      color={MarkerCategories[marker.category].color}
-                      key={(marker.position as number[]).join('')}
-                      position={marker.position}
-                    />
-                  ))}
-                </LeafletCluster>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </LeafletMapContainer>
+        {allMarkersBoundCenter && clustersByCategory && (
+          <LeafletMapContainer
+            center={allMarkersBoundCenter.centerPos}
+            zoom={allMarkersBoundCenter.minZoom}
+            maxZoom={AppConfig.maxZoom}
+            minZoom={AppConfig.minZoom}
+          >
+            {!isLoading ? (
+              <>
+                <CenterToMarkerButton
+                  center={allMarkersBoundCenter.centerPos}
+                  zoom={allMarkersBoundCenter.minZoom}
+                />
+                <LocateButton />
+                {Object.values(clustersByCategory).map(item => (
+                  <LeafletCluster
+                    key={item.category}
+                    icon={MarkerCategories[item.category as Category].icon}
+                    color={MarkerCategories[item.category as Category].color}
+                    chunkedLoading
+                  >
+                    {item.markers.map(marker => (
+                      <CustomMarker
+                        icon={MarkerCategories[marker.category].icon}
+                        color={MarkerCategories[marker.category].color}
+                        key={(marker.position as number[]).join('')}
+                        position={marker.position}
+                      />
+                    ))}
+                  </LeafletCluster>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </LeafletMapContainer>
+        )}
       </div>
     </div>
   )
