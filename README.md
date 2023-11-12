@@ -6,6 +6,8 @@ Setup with [typescript](https://www.typescriptlang.org/) 👐.
 
 Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
 
+Wanna instead use the crazy fast Maplibre GL JS?: Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
+
 ### Table of Contents
 1. [Features](#features)
 2. [Getting started](#getting-started)
