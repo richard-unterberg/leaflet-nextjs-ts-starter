@@ -83,6 +83,7 @@ yarn start
 
 ### <a id="coming-up"></a> 📊 Upcoming (probably)
 
++ jsx marker popups
 + redesign zoom in / zoom out
 + atom components for map ui
 + fix error when setting new coordinates in hot reload "Map container is already initialized."
