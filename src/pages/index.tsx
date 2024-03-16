@@ -71,7 +71,8 @@ const Home = () => (
     </section>
     <footer className="mt-16 flex justify-between rounded bg-light p-3 text-sm">
       <div>
-        2023, some rights reserved <br />
+        2023, Richard Unterberg
+        <br />
         <Link
           href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"
           className="text-primary"
@@ -80,7 +81,7 @@ const Home = () => (
         </Link>
       </div>
       <div className="text-primary">
-        <Leaf size={AppConfig.ui.mapIconSize} className="mt-2" />
+        <Leaf size={AppConfig.ui.mapIconSize} className="mt-1" />
       </div>
     </footer>
   </div>

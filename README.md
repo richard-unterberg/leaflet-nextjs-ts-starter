@@ -20,15 +20,13 @@ Packed with useful components and hooks for using the map and create UI elements
 
 ### <a id="features"></a> 🎇 Features
 
-- 🏇 mighty next.js 14 leaflet-react setup
+- 🏇 next.js 14 ("pages" routing)
 - 😏 typescript + strict lint setup
-- 🔗 next.js ready route nav module
-- 🌤 modular demo content
-- 🐛 custom marker icons
-- 📄 custom marker popups
+- 🐛 custom markers
+- 📄 custom popups
 - 📚 marker categories
-- 🫧 marker cluster by category with matching icon+color and notification bubble with marker count
-- ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
+- 🫧 marker clustering
+- ⚓️ context for map and leaflet instances
 - 🏡 custom ui components (locate me, center on markers)
 
 ### <a id="getting-started"></a> 🏎 Getting Started
@@ -97,9 +95,7 @@ yarn start
 + fix error when setting new coordinates in hot reload "Map container is already initialized."
 + breakpoint hook synced with tailwind breakpoint which is usable in js
 + multiple map instances per page
-  + not possible atm since we read the map instance directly from window object 🤫
-+ add axios for fetching data
-  + move simulated "endpoint" (Places) to public folder and convert to JSON
++ add some data & experiments with more data
 
 - **Feel free to contribute!** 🤗
 
@@ -111,11 +107,11 @@ I've been using them a lot on my dayjob and I can't be anymore without them. �
 
 ### <a id="web-gl"></a> 👽 Web GL based mapping project
 
-Leafleft, graphic-based tile rendering or rasterized zoom levels are not smooth enough and you are in for crazy fast WebGL mapping? Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
+leafleft, graphic-based tile rendering or rasterized zoom levels are not smooth enough and you are in for crazy fast WebGL mapping? Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
 
 ### <a id="no-ts"></a> 📝 Don't wanna use typscript at all?
 
-See this nice javascript implementation - This repo is heavily inspired by this one:
+See this nice javascript implementation - This repo is inspired by:
 https://github.com/colbyfayock/next-leaflet-starter
 
 Happy coding! ✌️👽
