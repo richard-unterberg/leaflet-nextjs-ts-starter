@@ -14,7 +14,7 @@ interface MapContextProviderProps {
   children: React.ReactNode
 }
 
-const MapContextProvider = ({ children }: MapContextProviderProps) => {
+const LeafleftMapContextProvider = ({ children }: MapContextProviderProps) => {
   const [map, setMap] = useState<Leaflet.Map | undefined>(undefined)
   const [openPopup, setOpenPopup] = useState<number | undefined>(undefined)
 
@@ -23,4 +23,4 @@ const MapContextProvider = ({ children }: MapContextProviderProps) => {
   )
 }
 
-export default MapContextProvider
+export default LeafleftMapContextProvider

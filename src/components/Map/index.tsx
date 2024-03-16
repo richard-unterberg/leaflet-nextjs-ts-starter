@@ -8,8 +8,7 @@ import { AppConfig } from '@lib/AppConfig'
 import MarkerCategories, { Category } from '@lib/MarkerCategories'
 import { Places } from '@lib/Places'
 
-import MapContextProvider from './MapContextProvider'
-import useLeafletWindow from './useLeafletWindow'
+import LeafleftMapContextProvider from './LeafletMapContextProvider'
 import useMapContext from './useMapContext'
 import useMarkerData from './useMarkerData'
 
@@ -29,9 +28,8 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
   ssr: false,
 })
 
-const MapInner = () => {
+const LeafletMapInner = () => {
   const { map } = useMapContext()
-  const leafletWindow = useLeafletWindow()
   const {
     width: viewportWidth,
     height: viewportHeight,
@@ -48,7 +46,7 @@ const MapInner = () => {
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
+  const isLoading = !map || !viewportWidth || !viewportHeight
 
   /** watch position & zoom of all markers */
   useEffect(() => {
@@ -114,9 +112,9 @@ const MapInner = () => {
 
 // pass through to get context in <MapInner>
 const Map = () => (
-  <MapContextProvider>
-    <MapInner />
-  </MapContextProvider>
+  <LeafleftMapContextProvider>
+    <LeafletMapInner />
+  </LeafleftMapContextProvider>
 )
 
 export default Map
