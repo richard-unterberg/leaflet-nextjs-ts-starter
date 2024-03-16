@@ -2,14 +2,12 @@ import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
-import MapTopBar from '@components/TopBar'
+import MapTopBar from '#components/TopBar'
+import { AppConfig } from '#lib/AppConfig'
+import MarkerCategories, { Category } from '#lib/MarkerCategories'
+import { Places } from '#lib/Places'
 
-import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories, { Category } from '@lib/MarkerCategories'
-import { Places } from '@lib/Places'
-
-import MapContextProvider from './MapContextProvider'
-import useLeafletWindow from './useLeafletWindow'
+import LeafleftMapContextProvider from './LeafletMapContextProvider'
 import useMapContext from './useMapContext'
 import useMarkerData from './useMarkerData'
 
@@ -19,7 +17,7 @@ const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).Le
 const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
   ssr: false,
 })
-const CustomMarker = dynamic(async () => (await import('./Marker')).CustomMarker, {
+const CustomMarker = dynamic(async () => (await import('./LeafletMarker')).CustomMarker, {
   ssr: false,
 })
 const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
@@ -29,10 +27,8 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
   ssr: false,
 })
 
-const MapInner = () => {
+const LeafletMapInner = () => {
   const { map } = useMapContext()
-  const leafletWindow = useLeafletWindow()
-
   const {
     width: viewportWidth,
     height: viewportHeight,
@@ -49,27 +45,25 @@ const MapInner = () => {
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
+  const isLoading = !map || !viewportWidth || !viewportHeight
 
   /** watch position & zoom of all markers */
   useEffect(() => {
     if (!allMarkersBoundCenter || !map) return
 
     const moveEnd = () => {
-      map.setMinZoom(allMarkersBoundCenter.minZoom - 1)
       map.off('moveend', moveEnd)
     }
 
-    map.setMinZoom(0)
     map.flyTo(allMarkersBoundCenter.centerPos, allMarkersBoundCenter.minZoom, { animate: false })
     map.once('moveend', moveEnd)
-  }, [allMarkersBoundCenter])
+  }, [allMarkersBoundCenter, map])
 
   return (
-    <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
+    <div className="absolute h-full w-full overflow-hidden" ref={viewportRef}>
       <MapTopBar />
       <div
-        className={`absolute w-full left-0 transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
+        className={`absolute left-0 w-full transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
         style={{
           top: AppConfig.ui.topBarHeight,
           width: viewportWidth ?? '100%',
@@ -98,17 +92,13 @@ const MapInner = () => {
                     chunkedLoading
                   >
                     {item.markers.map(marker => (
-                      <CustomMarker
-                        icon={MarkerCategories[marker.category].icon}
-                        color={MarkerCategories[marker.category].color}
-                        key={(marker.position as number[]).join('')}
-                        position={marker.position}
-                      />
+                      <CustomMarker place={marker} key={marker.id} />
                     ))}
                   </LeafletCluster>
                 ))}
               </>
             ) : (
+              // we have to spawn at least one element to keep it happy
               // eslint-disable-next-line react/jsx-no-useless-fragment
               <></>
             )}
@@ -121,9 +111,9 @@ const MapInner = () => {
 
 // pass through to get context in <MapInner>
 const Map = () => (
-  <MapContextProvider>
-    <MapInner />
-  </MapContextProvider>
+  <LeafleftMapContextProvider>
+    <LeafletMapInner />
+  </LeafleftMapContextProvider>
 )
 
 export default Map

@@ -3,7 +3,7 @@ import { Shrink } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useMapEvents } from 'react-leaflet'
 
-import { AppConfig } from '@lib/AppConfig'
+import { AppConfig } from '#lib/AppConfig'
 
 import useMapContext from '../useMapContext'
 
@@ -12,10 +12,7 @@ interface CenterButtonProps {
   zoom: number
 }
 
-export const CenterButton: React.FC<{
-  center: CenterButtonProps['center']
-  zoom: CenterButtonProps['zoom']
-}> = ({ center, zoom }: CenterButtonProps) => {
+export const CenterButton = ({ center, zoom }: CenterButtonProps) => {
   const [isTouched, setIsTouched] = useState(false)
   const { map } = useMapContext()
 
@@ -23,7 +20,7 @@ export const CenterButton: React.FC<{
     if (!isTouched && map) {
       setIsTouched(true)
     }
-  }, [map])
+  }, [isTouched, map])
 
   useMapEvents({
     move() {
@@ -47,7 +44,7 @@ export const CenterButton: React.FC<{
     <button
       type="button"
       style={{ zIndex: 400 }}
-      className={`button absolute rounded top-2 right-3 p-2 shadow-md bg-white ${
+      className={`button absolute top-2 right-3 rounded bg-white p-2 shadow-md ${
         isTouched ? 'text-dark' : 'text-light'
       } `}
       onClick={() => handleClick()}

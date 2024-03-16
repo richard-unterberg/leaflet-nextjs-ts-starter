@@ -27,7 +27,7 @@
     "prettier/prettier": 2,
     "react/jsx-no-constructed-context-values": 0,
     "react/destructuring-assignment": 0,
-    "react-hooks/exhaustive-deps": 0,
+    "react-hooks/exhaustive-deps": 1,
     "@typescript-eslint/naming-convention": 0,
     "@typescript-eslint/no-unused-expressions": 0,
     "react/function-component-definition": [

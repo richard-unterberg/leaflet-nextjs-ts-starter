@@ -1,13 +1,15 @@
 import { useContext } from 'react'
 
-import { MapContext } from './MapContextProvider'
+import { MapContext } from './LeafletMapContextProvider'
 
 const useMapContext = () => {
   const mapInstance = useContext(MapContext)
   const map = mapInstance?.map
   const setMap = mapInstance?.setMap
+  const openPopup = mapInstance?.openPopup
+  const setOpenPopup = mapInstance?.setOpenPopup
 
-  return { map, setMap }
+  return { map, setMap, openPopup, setOpenPopup }
 }
 
 export default useMapContext

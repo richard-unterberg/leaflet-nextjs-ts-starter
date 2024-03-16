@@ -1,6 +1,6 @@
 import { Compass, Github, Home } from 'lucide-react'
 
-import { AppConfig, NavMenuVariant } from '@lib/AppConfig'
+import { AppConfig, NavMenuVariant } from '#lib/AppConfig'
 
 import NavMenuItem from './NavMenuItem'
 
