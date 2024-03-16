@@ -92,7 +92,6 @@ yarn start
 
 ### <a id="coming-up"></a> 📊 Upcoming (probably)
 
-+ jsx marker popups
 + redesign zoom in / zoom out
 + atom components for map ui
 + fix error when setting new coordinates in hot reload "Map container is already initialized."
@@ -110,9 +109,9 @@ You can adjust the settings mainly in ```eslint.json``` and ```tsconfig.json```.
 
 I've been using them a lot on my dayjob and I can't be anymore without them. 🥲
 
-### <a id="web-gl"></a> 👽 Web GL based mapping
+### <a id="web-gl"></a> 👽 Web GL based mapping project
 
-Leafleft, graphic-based tile rendering or rasterized zoom levels are enough for you and you are in for crazy fast WebGL mapping? Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
+Leafleft, graphic-based tile rendering or rasterized zoom levels are not smooth enough and you are in for crazy fast WebGL mapping? Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
 
 ### <a id="no-ts"></a> 📝 Don't wanna use typscript at all?
 
