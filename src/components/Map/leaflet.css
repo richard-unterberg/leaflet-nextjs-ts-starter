@@ -1,0 +1,39 @@
+/*
+ custom styles for leaflet
+*/
+
+.leaflet-marker-icon.leaflet-div-icon {
+  background: none;
+  border: none !important;
+}
+
+.leaflet-cluster-anim .leaflet-marker-icon,
+.leaflet-cluster-anim .leaflet-marker-shadow {
+  transition: transform 0.25s ease-out, opacity 0.25s ease-in;
+}
+
+.leaflet-popup-content {
+  width: 1px !important;
+  height: 1px !important;
+}
+
+.leaflet-popup-content p,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip-container,
+.leaflet-popup-tip,
+.leaflet-popup-content {
+  background: initial;
+  color: initial;
+  box-shadow: initial;
+  position: initial;
+  left: initial;
+  margin-top: initial;
+  margin-left: initial;
+  overflow: initial;
+  pointer-events: initial;
+  margin: initial;
+  line-height: initial;
+  font-size: initial;
+  font-size: initial;
+  min-height: initial;
+}

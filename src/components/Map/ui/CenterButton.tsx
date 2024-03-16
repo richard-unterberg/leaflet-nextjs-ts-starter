@@ -12,10 +12,7 @@ interface CenterButtonProps {
   zoom: number
 }
 
-export const CenterButton: React.FC<{
-  center: CenterButtonProps['center']
-  zoom: CenterButtonProps['zoom']
-}> = ({ center, zoom }: CenterButtonProps) => {
+export const CenterButton = ({ center, zoom }: CenterButtonProps) => {
   const [isTouched, setIsTouched] = useState(false)
   const { map } = useMapContext()
 
@@ -23,7 +20,7 @@ export const CenterButton: React.FC<{
     if (!isTouched && map) {
       setIsTouched(true)
     }
-  }, [map])
+  }, [isTouched, map])
 
   useMapEvents({
     move() {

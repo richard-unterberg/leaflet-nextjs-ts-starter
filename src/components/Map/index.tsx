@@ -19,7 +19,7 @@ const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).Le
 const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
   ssr: false,
 })
-const CustomMarker = dynamic(async () => (await import('./Marker')).CustomMarker, {
+const CustomMarker = dynamic(async () => (await import('./LeafletMarker')).CustomMarker, {
   ssr: false,
 })
 const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
@@ -32,7 +32,6 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
 const MapInner = () => {
   const { map } = useMapContext()
   const leafletWindow = useLeafletWindow()
-
   const {
     width: viewportWidth,
     height: viewportHeight,
@@ -56,14 +55,12 @@ const MapInner = () => {
     if (!allMarkersBoundCenter || !map) return
 
     const moveEnd = () => {
-      map.setMinZoom(allMarkersBoundCenter.minZoom - 1)
       map.off('moveend', moveEnd)
     }
 
-    map.setMinZoom(0)
     map.flyTo(allMarkersBoundCenter.centerPos, allMarkersBoundCenter.minZoom, { animate: false })
     map.once('moveend', moveEnd)
-  }, [allMarkersBoundCenter])
+  }, [allMarkersBoundCenter, map])
 
   return (
     <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
@@ -98,17 +95,13 @@ const MapInner = () => {
                     chunkedLoading
                   >
                     {item.markers.map(marker => (
-                      <CustomMarker
-                        icon={MarkerCategories[marker.category].icon}
-                        color={MarkerCategories[marker.category].color}
-                        key={(marker.position as number[]).join('')}
-                        position={marker.position}
-                      />
+                      <CustomMarker place={marker} key={marker.id} />
                     ))}
                   </LeafletCluster>
                 ))}
               </>
             ) : (
+              // we have to spawn at least one element to keep it happy
               // eslint-disable-next-line react/jsx-no-useless-fragment
               <></>
             )}

@@ -1,17 +1,15 @@
-import { LatLngExpression } from 'leaflet'
 import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
 
 import { AppConfig } from '@lib/AppConfig'
 
-export interface CustomMarkerProps {
-  position: LatLngExpression
+export interface MarkerIconWrapperProps {
   icon?: FunctionComponent<LucideProps>
   color: string
   label?: string
 }
 
-const MarkerIconWrapper = ({ icon, color, label }: Partial<CustomMarkerProps>) => {
+const MarkerIconWrapper = ({ icon, color, label }: MarkerIconWrapperProps) => {
   const IconFC = useMemo(() => icon ?? null, [icon])
 
   return (

@@ -22,7 +22,7 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
   const leafletWindow = useLeafletWindow()
 
   const [allMarkersBoundCenter, setAllMarkersBoundCenter] = useState<allMarkerPosValues>({
-    minZoom: AppConfig.minZoom - 1,
+    minZoom: AppConfig.minZoom - 5,
     centerPos: AppConfig.baseCenter,
   })
 
@@ -57,9 +57,10 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
   }, [locations])
 
   // auto resize map to fit all markers on viewport change
-  // useMemo will not work here, because we need to update the map size after the viewport size changes
+  // it's crucial to set viewport size as dependecy to trigger the map resize
   useEffect(() => {
     if (!allMarkerBounds || !leafletWindow || !map) return
+    if (!viewportWidth || !viewportHeight) return
 
     const el = map.invalidateSize()
     if (!el) return
@@ -67,7 +68,7 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
       minZoom: map.getBoundsZoom(allMarkerBounds),
       centerPos: [allMarkerBounds.getCenter().lat, allMarkerBounds.getCenter().lng],
     })
-  }, [allMarkerBounds, viewportWidth, viewportHeight])
+  }, [allMarkerBounds, leafletWindow, map, viewportWidth, viewportHeight])
 
   return { clustersByCategory, allMarkersBoundCenter }
 }

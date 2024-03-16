@@ -3,6 +3,8 @@ import type { AppProps } from 'next/app'
 import { Catamaran } from 'next/font/google'
 import Head from 'next/head'
 
+import '@components/map/leaflet.css'
+
 import '@src/globals.css'
 
 const catamaran = Catamaran({
