@@ -2,13 +2,13 @@ import { LatLngExpression } from 'leaflet'
 import { LocateFixed } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
-import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories, { Category } from '@lib/MarkerCategories'
+import { AppConfig } from '#lib/AppConfig'
+import { Category } from '#lib/MarkerCategories'
 
-import { CustomMarker } from '../Marker'
+import { CustomMarker } from '../LeafletMarker'
 import useMapContext from '../useMapContext'
 
-export const LocateButton: React.FC = () => {
+export const LocateButton = () => {
   const { map } = useMapContext()
   const [userPosition, setUserPosition] = useState<LatLngExpression | undefined>(undefined)
 
@@ -20,29 +20,33 @@ export const LocateButton: React.FC = () => {
     } else {
       setUserPosition(undefined)
     }
-  }, [map])
+  }, [])
 
   useEffect(() => {
     if (userPosition) {
       map?.flyTo(userPosition)
     }
-  }, [userPosition])
+  }, [map, userPosition])
 
   return (
     <>
       <button
         type="button"
         style={{ zIndex: 400 }}
-        className="button absolute rounded top-16 right-3 p-2 shadow-md text-dark bg-white"
+        className="button absolute top-16 right-3 rounded bg-white p-2 text-dark shadow-md"
         onClick={() => handleClick()}
       >
         <LocateFixed size={AppConfig.ui.mapIconSize} />
       </button>
       {userPosition && (
         <CustomMarker
-          color={MarkerCategories[Category.LOCATE].color}
-          icon={MarkerCategories[Category.LOCATE].icon}
-          position={userPosition}
+          place={{
+            id: 0,
+            title: 'Your location',
+            address: 'You are here',
+            position: userPosition,
+            category: Category.LOCATE,
+          }}
         />
       )}
     </>

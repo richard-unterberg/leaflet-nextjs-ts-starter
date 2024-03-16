@@ -1,3 +1,3 @@
-import twConfig from '@root/tailwind.config.js'
+import twConfig from '#root/tailwind.config'
 
 export const twColor = (color: string) => twConfig.theme.colors[color]

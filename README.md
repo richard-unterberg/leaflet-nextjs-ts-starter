@@ -1,37 +1,46 @@
 typescript next.js starter kit for leaflet-react
 ===============
 
-An extensible [next.js](https://nextjs.org/) starter kit for the [leaflet-react](https://react-leaflet.js.org/) map plugin. Template visually enhanced by [tailwind](https://tailwindcss.com/) and [lucide icons](https://lucide.dev/). ✨
+An extensible [next.js](https://nextjs.org/) starter kit archived with the [leaflet-react](https://react-leaflet.js.org/) map plugin. Template visually enhanced by [tailwind](https://tailwindcss.com/) and [lucide icons](https://lucide.dev/). ✨
 Setup with [typescript](https://www.typescriptlang.org/) 👐.
 
-Packed with useful components and hooks for using the map and create UI elements for your next(.js) big mapping project.
-
-Wanna instead use the crazy fast Maplibre GL JS?: Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
+Packed with useful components and hooks for using the map and create UI elements for next(.js) mapping projects.
 
 ### Table of Contents
 1. [Features](#features)
 2. [Getting started](#getting-started)
-    1. [Clone & Deploy with Github and Vercel](#clone-deploy)
-    2. [Manual install](#manual-install)
+    1. [Breaking Changes](#breaking-changes)
+    2. [Clone & Deploy with Github and Vercel](#clone-deploy)
+    3. [Manual install](#manual-install)
 3. [Start up](#start-up)
 4. [Coming up (probably)](#coming-up)
-5. [Dependencies](#dependencies)
-6. [Removing linting rules](#disable-lint)
+6. [Remove / change linting rules](#disable-lint)
+7. [WebGL?](#web-gl)
 7. [No typescript?](#no-ts)
 
 ### <a id="features"></a> 🎇 Features
 
-- 🏇 mighty next.js 13 leaflet-react no-ssr setup
+- 🏇 mighty next.js 14 leaflet-react setup
 - 😏 typescript + strict lint setup
 - 🔗 next.js ready route nav module
 - 🌤 modular demo content
 - 🐛 custom marker icons
+- 📄 custom marker popups
 - 📚 marker categories
 - 🫧 marker cluster by category with matching icon+color and notification bubble with marker count
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
 - 🏡 custom ui components (locate me, center on markers)
 
 ### <a id="getting-started"></a> 🏎 Getting Started
+
+#### <a id="breaking-changes"></a> 💣 Breaking Changes introduced > v0.1.1
+
+In Version v0.1.2, I changed the path aliases to be more consistent with the ES standards from `@alias` to `#alias`. If pulling the template from v0.1.1 you have to change the import paths in your components and pages.
+
+```diff
+- import { SomeComponent } from '@components/useMap'
++ import { SomeComponent } from '#components/useMap'
+```
 
 #### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
 
@@ -94,28 +103,15 @@ yarn start
 
 - **Feel free to contribute!** 🤗
 
-### <a id="dependencies"></a> 📦 All them dependencies
-
-```json
-"next": "^13.2.3",
-"react": "^18.2.0",
-"react-dom": "^18.2.0",
-"react-leaflet": "^4.2.1",
-"@react-leaflet/core": "^2.1.0",
-"leaflet": "^1.9.3",
-"leaflet.markercluster": "^1.5.3",
-"react-resize-detector": "^8.0.4",
-"tailwindcss": "^3.2.6"
-"lucide-react": "^0.121.0",
-```
-
-See ```package.json``` for more details and devDependencies.
-
 ### <a id="disable-lint"></a> 🤯 How to remove those  linting rules?
 
 You can adjust the settings mainly in ```eslint.json``` and ```tsconfig.json```.
 
 I've been using them a lot on my dayjob so I can't be anymore without them.
+
+### <a id="web-gl"></a> 👽 Web GL based mapping
+
+Leafleft and JS-based are not performant enough for you and you are in for crazy fast WebGL mapping? Here's my [maplibre next.js ts starter kit](https://github.com/richard-unterberg/maplibre-nextjs-ts-starter)
 
 ### <a id="no-ts"></a> 📝 Don't wanna use typscript at all?
 

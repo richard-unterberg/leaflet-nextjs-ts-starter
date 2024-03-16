@@ -2,7 +2,7 @@ import Leaflet from 'leaflet'
 import { Compass } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import useMapContext from '@components/Map/useMapContext'
+import useMapContext from '#components/Map/useMapContext'
 
 const LatLngLogo = () => {
   const { map } = useMapContext()
@@ -26,10 +26,10 @@ const LatLngLogo = () => {
   }, [map])
 
   return (
-    <div className="text-lg leading-none md:text-2xl md:leading-none font-black flex gap-2 text-white">
+    <div className="flex gap-2 text-lg font-black leading-none text-white md:text-2xl md:leading-none">
       <div className="flex items-center">
         <Compass size={36} className="text-slate-50 md:hidden" />
-        <Compass size={48} className="hidden text-slate-50 md:block" />
+        <Compass size={48} className="text-slate-50 hidden md:block" />
       </div>
       <div className="text-slate-50 flex items-center">
         {lat}
