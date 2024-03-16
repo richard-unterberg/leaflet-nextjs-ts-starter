@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
 import MapTopBar from '@components/TopBar'
-
 import { AppConfig } from '@lib/AppConfig'
 import MarkerCategories, { Category } from '@lib/MarkerCategories'
 import { Places } from '@lib/Places'
@@ -61,10 +60,10 @@ const LeafletMapInner = () => {
   }, [allMarkersBoundCenter, map])
 
   return (
-    <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
+    <div className="absolute h-full w-full overflow-hidden" ref={viewportRef}>
       <MapTopBar />
       <div
-        className={`absolute w-full left-0 transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
+        className={`absolute left-0 w-full transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
         style={{
           top: AppConfig.ui.topBarHeight,
           width: viewportWidth ?? '100%',

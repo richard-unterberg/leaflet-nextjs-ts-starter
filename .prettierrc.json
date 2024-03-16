@@ -5,14 +5,10 @@
   "semi": false,
   "trailingComma": "all",
   "printWidth": 110,
-  "importOrder": [
-    "^@root/(.*)$",
-    "^@pages/(.*)$",
-    "^@components/(.*)$",
-    "^@src/(.*)$",
-    "^@lib/(.*)$",
-    "^[./]"
-  ],
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": ["<BUILTIN_MODULES>", "<THIRD_PARTY_MODULES>", "", "^@(.*)$", "", "^[.]"],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.0.0",
   "importOrderSortSpecifiers": true,
   "importOrderSeparation": true,
   "importOrderGroupNamespaceSpecifiers": true
