@@ -4,8 +4,8 @@ import type { AppProps } from 'next/app'
 import { Catamaran } from 'next/font/google'
 import Head from 'next/head'
 
-import '@components/Map/leaflet-custom.css'
-import '@src/globals.css'
+import '#components/Map/leaflet-custom.css'
+import '#src/globals.css'
 
 const catamaran = Catamaran({
   subsets: ['latin'],

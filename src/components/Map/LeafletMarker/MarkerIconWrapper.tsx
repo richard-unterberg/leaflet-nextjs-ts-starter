@@ -1,7 +1,7 @@
 import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
 
-import { AppConfig } from '@lib/AppConfig'
+import { AppConfig } from '#lib/AppConfig'
 
 export interface MarkerIconWrapperProps {
   icon?: FunctionComponent<LucideProps>
@@ -13,17 +13,17 @@ const MarkerIconWrapper = ({ icon, color, label }: MarkerIconWrapperProps) => {
   const IconFC = useMemo(() => icon ?? null, [icon])
 
   return (
-    <div className="relative inline-flex p-0 m-0">
+    <div className="relative m-0 inline-flex p-0">
       {label && (
         <span className="absolute -inset-2 rounded-full opacity-40" style={{ backgroundColor: color }} />
       )}
       <div
-        className="p-2 inline-block rounded-full bg-primary text-white relative"
+        className="relative inline-block rounded-full bg-primary p-2 text-white"
         style={{ backgroundColor: color }}
       >
         {IconFC && <IconFC size={AppConfig.ui.markerIconSize} />}
         {label && (
-          <span className="flex flex-col absolute -top-2 -right-2 border-2 border-white bg-error rounded-full h-7 w-7 text-xs items-center pt-1">
+          <span className="absolute -top-2 -right-2 flex h-7 w-7 flex-col items-center rounded-full border-2 border-white bg-error pt-1 text-xs">
             {label}
           </span>
         )}

@@ -2,12 +2,11 @@ import { Leaf } from 'lucide-react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import NavMenu from '@components/common/NavMenu'
-
-import { AppConfig } from '@lib/AppConfig'
+import NavMenu from '#components/common/NavMenu'
+import { AppConfig } from '#lib/AppConfig'
 
 const Home = () => (
-  <div className="container mx-auto max-w-2xl max-md:max-w-none p-3">
+  <div className="container mx-auto max-w-2xl p-3 max-md:max-w-none">
     <Head>
       <title>Jumpstart your new leaflet mapping Project with next.js and typescript 🤩</title>
       <meta
@@ -21,13 +20,13 @@ const Home = () => (
       visually enhanced by tailwind and lucide-react icons."
       />
     </Head>
-    <header className="mt-10 items-top gap-4 md:flex">
+    <header className="items-top mt-10 gap-4 md:flex">
       <span className="text-primary">
         <Leaf size={AppConfig.ui.bigIconSize} className="mt-2" />
       </span>
       <div>
         <h2 className="text-4xl font-bold ">Next.js starter for leaflet-react</h2>
-        <h3 className="text-3xl mb-16">written in Typescript</h3>
+        <h3 className="mb-16 text-3xl">written in Typescript</h3>
       </div>
     </header>
     <section>
@@ -66,11 +65,11 @@ const Home = () => (
     </section>
     <section className="grid grid-cols-1 md:grid-cols-2">
       <div>
-        <h3 className="text-xl my-5">Demo Content</h3>
+        <h3 className="my-5 text-xl">Demo Content</h3>
         <NavMenu />
       </div>
     </section>
-    <footer className="mt-16 flex justify-between p-3 rounded bg-light text-sm">
+    <footer className="mt-16 flex justify-between rounded bg-light p-3 text-sm">
       <div>
         2023, some rights reserved <br />
         <Link
