@@ -26,6 +26,7 @@ Wanna instead use the crazy fast Maplibre GL JS?: Here's my [maplibre next.js ts
 - 🔗 next.js ready route nav module
 - 🌤 modular demo content
 - 🐛 custom marker icons
+- 📄 custom marker popups
 - 📚 marker categories
 - 🫧 marker cluster by category with matching icon+color and notification bubble with marker count
 - ⚓️ custom hooks for getting marker data and map context (thx [Flo301](https://github.com/Flo301))
