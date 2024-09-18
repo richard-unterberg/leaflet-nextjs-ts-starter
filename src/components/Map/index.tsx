@@ -1,11 +1,12 @@
+import Leaflet from 'leaflet'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
 import MapTopBar from '#components/TopBar'
 import { AppConfig } from '#lib/AppConfig'
 import MarkerCategories, { Category } from '#lib/MarkerCategories'
-import { Places } from '#lib/Places'
+import { Places, PlacesType } from '#lib/Places'
 
 import LeafleftMapContextProvider from './LeafletMapContextProvider'
 import useMapContext from './useMapContext'
@@ -27,8 +28,35 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
   ssr: false,
 })
 
+export interface ViewState {
+  minLat: number
+  minLng: number
+  maxLat: number
+  maxLng: number
+  zoomLevel: number
+}
+
+const getViewState: (map?: Leaflet.Map) => ViewState | undefined = (map?: Leaflet.Map) => {
+  if (!map) return undefined
+
+  const bounds = map.getBounds()
+  const zoomLevel = map.getZoom()
+
+  return {
+    minLat: bounds.getSouthWest().lat,
+    minLng: bounds.getSouthWest().lng,
+    maxLat: bounds.getNorthEast().lat,
+    maxLng: bounds.getNorthEast().lng,
+    zoomLevel,
+  }
+}
+
 const LeafletMapInner = () => {
   const { map } = useMapContext()
+
+  // we can use this to modify our query for locations
+  const [viewState, setViewState] = useState(getViewState(map))
+
   const {
     width: viewportWidth,
     height: viewportHeight,
@@ -38,8 +66,25 @@ const LeafletMapInner = () => {
     refreshRate: 200,
   })
 
+  // you will need some kind middleware which process markers within the bounding box in viewState
+  const markerQueryResponse = Places as PlacesType | undefined
+
+  useEffect(() => {
+    if (!map) return undefined
+
+    // you should debounce that by only changing when the map stops moving
+    map?.on('moveend', () => {
+      setViewState(getViewState(map))
+    })
+
+    // cleanup
+    return () => {
+      map.off()
+    }
+  }, [map])
+
   const { clustersByCategory, allMarkersBoundCenter } = useMarkerData({
-    locations: Places,
+    locations: markerQueryResponse,
     map,
     viewportWidth,
     viewportHeight,
