@@ -5,12 +5,11 @@ import { Marker as ReactMarker } from 'react-leaflet'
 import { AppConfig } from '#lib/AppConfig'
 import MarkerCategories from '#lib/MarkerCategories'
 import { PlaceValues } from '#lib/Places'
+import LeafletDivIcon from '#map/LeafletDivIcon'
+import MarkerIconWrapper from '#map/LeafletMarker/MarkerIconWrapper'
+import useMapContext from '#map/useMapContext'
 
-import LeafletDivIcon from '../LeafletDivIcon'
-import useMapContext from '../useMapContext'
-import MarkerIconWrapper from './MarkerIconWrapper'
-
-const LeafletPopup = dynamic(() => import('../LeafletPopup'))
+const LeafletPopup = dynamic(() => import('#map/LeafletPopup'))
 
 export interface CustomMarkerProps {
   place: PlaceValues

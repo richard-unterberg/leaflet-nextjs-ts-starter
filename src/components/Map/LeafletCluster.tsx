@@ -12,9 +12,8 @@ import { LucideProps } from 'lucide-react'
 import React, { FunctionComponent } from 'react'
 
 import { AppConfig } from '#lib/AppConfig'
-
-import LeafletDivIcon from './LeafletDivIcon'
-import MarkerIconWrapper from './LeafletMarker/MarkerIconWrapper'
+import LeafletDivIcon from '#map/LeafletDivIcon'
+import MarkerIconWrapper from '#map/LeafletMarker/MarkerIconWrapper'
 
 type ClusterEvents = {
   onClick?: LeafletMouseEventHandlerFn

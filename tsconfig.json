@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
+      "#map/*": ["./src/components/Map/*"],
       "#pages/*": ["./src/pages/*"],
       "#components/*": ["./src/components/*"],
       "#lib/*": ["./src/lib/*"],

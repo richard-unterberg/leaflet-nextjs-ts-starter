@@ -1,5 +1,6 @@
 import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
+import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
 
@@ -9,27 +10,59 @@ export interface MarkerIconWrapperProps {
   label?: string
 }
 
+const MarkerOuter = rsc.div`
+  relative m-0 inline-flex p-0
+`
+
+const MarkerLabelColorBg = rsc.span`
+  absolute -inset-2 rounded-full opacity-40
+`
+
+const MarkerInner = rsc.div`
+  relative
+  inline-block
+  rounded-full
+  bg-primary
+  p-2
+  text-white
+`
+
+const MarkerBadge = rsc.span`
+  absolute
+  -right-2
+  -top-2
+  flex
+  h-7
+  w-7
+  text-center
+  flex-col
+  rounded-full
+  border-2
+  border-white
+  bg-error
+  pt-1
+  text-xs
+`
+
+const LabelShadow = rsc.span<{ $label: boolean }>`
+  ${p => (p.$label ? '-inset-2' : '-inset-1')}
+  absolute
+  rounded-full
+  shadow-md
+`
+
 const MarkerIconWrapper = ({ icon, color, label }: MarkerIconWrapperProps) => {
   const IconFC = useMemo(() => icon ?? null, [icon])
 
   return (
-    <div className="relative m-0 inline-flex p-0">
-      {label && (
-        <span className="absolute -inset-2 rounded-full opacity-40" style={{ backgroundColor: color }} />
-      )}
-      <div
-        className="relative inline-block rounded-full bg-primary p-2 text-white"
-        style={{ backgroundColor: color }}
-      >
+    <MarkerOuter>
+      {label && <MarkerLabelColorBg style={{ backgroundColor: color }} />}
+      <MarkerInner style={{ backgroundColor: color }}>
         {IconFC && <IconFC size={AppConfig.ui.markerIconSize} />}
-        {label && (
-          <span className="absolute -top-2 -right-2 flex h-7 w-7 flex-col items-center rounded-full border-2 border-white bg-error pt-1 text-xs">
-            {label}
-          </span>
-        )}
-      </div>
-      <span className={`absolute ${label ? '-inset-2' : '-inset-1'} rounded-full shadow-md`} />
-    </div>
+        {label && <MarkerBadge>{label}</MarkerBadge>}
+      </MarkerInner>
+      <LabelShadow $label={!!label} />
+    </MarkerOuter>
   )
 }
 
