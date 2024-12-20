@@ -20,7 +20,7 @@ Packed with useful components and hooks for using the map and create UI elements
 
 ### <a id="features"></a> 🎇 Features
 
-- 🏇 next.js 14 ("pages" routing)
+- 🏇 next.js 15 ("pages" routing)
 - 😏 typescript + strict lint setup
 - 🐛 custom markers
 - 📄 custom popups
