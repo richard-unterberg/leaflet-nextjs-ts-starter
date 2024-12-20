@@ -2,10 +2,26 @@ import { LatLngExpression } from 'leaflet'
 import { Shrink } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useMapEvents } from 'react-leaflet'
+import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
+import useMapContext from '#map/useMapContext'
 
-import useMapContext from '../useMapContext'
+interface StyledCenterButtonProps {
+  $isTouched: boolean
+}
+
+const StyledCenterButton = rsc.button<StyledCenterButtonProps>`
+  ${p => (p.$isTouched ? 'text-dark' : 'text-light')}
+  button
+  absolute
+  right-3
+  top-2
+  rounded
+  bg-white
+  p-2
+  shadow-md
+`
 
 interface CenterButtonProps {
   center: LatLngExpression
@@ -41,15 +57,13 @@ export const CenterButton = ({ center, zoom }: CenterButtonProps) => {
   }, [map, isTouched, zoom, center])
 
   return (
-    <button
+    <StyledCenterButton
       type="button"
       style={{ zIndex: 400 }}
-      className={`button absolute top-2 right-3 rounded bg-white p-2 shadow-md ${
-        isTouched ? 'text-dark' : 'text-light'
-      } `}
+      $isTouched={isTouched}
       onClick={() => handleClick()}
     >
       <Shrink size={AppConfig.ui.mapIconSize} />
-    </button>
+    </StyledCenterButton>
   )
 }

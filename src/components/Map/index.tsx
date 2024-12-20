@@ -1,31 +1,51 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
+import rsc from 'react-styled-classnames'
 
 import MapTopBar from '#components/TopBar'
 import { AppConfig } from '#lib/AppConfig'
 import MarkerCategories, { Category } from '#lib/MarkerCategories'
 import { Places } from '#lib/Places'
+import LeafleftMapContextProvider from '#map/LeafletMapContextProvider'
+import useMapContext from '#map/useMapContext'
+import useMarkerData from '#map/useMarkerData'
 
-import LeafleftMapContextProvider from './LeafletMapContextProvider'
-import useMapContext from './useMapContext'
-import useMarkerData from './useMarkerData'
+const LeafletCluster = dynamic(async () => (await import('#map/LeafletCluster')).LeafletCluster(), {
+  ssr: false,
+})
+const CenterToMarkerButton = dynamic(async () => (await import('#map/ui/CenterButton')).CenterButton, {
+  ssr: false,
+})
+const CustomMarker = dynamic(async () => (await import('#map/LeafletMarker')).CustomMarker, {
+  ssr: false,
+})
+const LocateButton = dynamic(async () => (await import('#map/ui/LocateButton')).LocateButton, {
+  ssr: false,
+})
+const LeafletMapContainer = dynamic(
+  async () => (await import('#map/LeafletMapContainer')).LeafletMapContainer,
+  {
+    ssr: false,
+  },
+)
 
-const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).LeafletCluster(), {
-  ssr: false,
-})
-const CenterToMarkerButton = dynamic(async () => (await import('./ui/CenterButton')).CenterButton, {
-  ssr: false,
-})
-const CustomMarker = dynamic(async () => (await import('./LeafletMarker')).CustomMarker, {
-  ssr: false,
-})
-const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).LocateButton, {
-  ssr: false,
-})
-const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapContainer')).LeafletMapContainer, {
-  ssr: false,
-})
+const StyledMapBase = rsc.div`
+  absolute
+  h-full
+  w-full
+  left-0
+  top-0
+`
+
+const StyledMapOuter = rsc.extend(StyledMapBase)`
+  overflow-hidden
+`
+
+const StyledMapInner = rsc.extend(StyledMapBase)<{ $isLoading: boolean }>`
+  transition-opacity
+  ${p => (p.$isLoading ? 'opacity-0' : 'opacity-1')}
+`
 
 const LeafletMapInner = () => {
   const { map } = useMapContext()
@@ -60,10 +80,10 @@ const LeafletMapInner = () => {
   }, [allMarkersBoundCenter, map])
 
   return (
-    <div className="absolute h-full w-full overflow-hidden" ref={viewportRef}>
+    <StyledMapOuter ref={viewportRef}>
       <MapTopBar />
-      <div
-        className={`absolute left-0 w-full transition-opacity ${isLoading ? 'opacity-0' : 'opacity-1 '}`}
+      <StyledMapInner
+        $isLoading={isLoading}
         style={{
           top: AppConfig.ui.topBarHeight,
           width: viewportWidth ?? '100%',
@@ -104,8 +124,8 @@ const LeafletMapInner = () => {
             )}
           </LeafletMapContainer>
         )}
-      </div>
-    </div>
+      </StyledMapInner>
+    </StyledMapOuter>
   )
 }
 

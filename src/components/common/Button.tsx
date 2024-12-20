@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import rsc from 'react-styled-classnames'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   small?: boolean
@@ -8,10 +9,32 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   noBorderRadius?: boolean
 }
 
-const WithLink = ({ link, children }: { link: ButtonProps['link']; children: JSX.Element }) => {
+interface StyledButtonProps extends ButtonProps {
+  $noGutter?: boolean
+  $size: 'small' | 'medium'
+  $border?: boolean
+}
+
+const StyledButton = rsc.button.variants<StyledButtonProps>({
+  base: p => `
+    ${p.$noGutter ? '!p-0' : ''}
+    ${p.border ? 'border' : ''}
+    flex
+    items-center
+    justify-center
+    gap-1`,
+  variants: {
+    $size: {
+      small: 'px-2 py-2',
+      medium: 'px-3 py-2',
+    },
+  },
+})
+
+const Button = ({ children, small = false, border, onClick, link, noGutter, ...props }: ButtonProps) => {
   const router = useRouter()
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
     if (!link) return
 
@@ -19,41 +42,19 @@ const WithLink = ({ link, children }: { link: ButtonProps['link']; children: JSX
   }
 
   return link ? (
-    <a href={link} className="inline-flex" onClick={handleClick}>
+    <a href={link} className="inline-flex" onClick={handleLinkClick}>
       {children}
     </a>
   ) : (
-    children
-  )
-}
-
-const Button = ({
-  children,
-  className,
-  small = false,
-  border,
-  onClick,
-  link,
-  noGutter,
-  ...props
-}: ButtonProps) => {
-  const buttonClass = small
-    ? `${noGutter ? 'p-0' : 'px-2 py-1'} text-small`
-    : `${noGutter ? 'p-0' : 'px-3 py-2'}`
-
-  return (
-    <WithLink link={link}>
-      <button
-        type="button"
-        onClick={onClick}
-        className={`${
-          border ? 'border' : ''
-        } ${buttonClass} flex items-center justify-center gap-1 ${className}`}
-        {...props}
-      >
-        {children}
-      </button>
-    </WithLink>
+    <StyledButton
+      onClick={onClick}
+      $border={border}
+      $noGutter={noGutter}
+      $size={small ? 'small' : 'medium'}
+      {...props}
+    >
+      {children}
+    </StyledButton>
   )
 }
 

@@ -1,9 +1,14 @@
 import { Leaf } from 'lucide-react'
 import Head from 'next/head'
 import Link from 'next/link'
+import rsc from 'react-styled-classnames'
 
 import NavMenu from '#components/common/NavMenu'
 import { AppConfig } from '#lib/AppConfig'
+
+const StyledLink = rsc.extend(Link)`
+  text-primary
+`
 
 const Home = () => (
   <div className="container mx-auto max-w-2xl p-3 max-md:max-w-none">
@@ -29,31 +34,31 @@ const Home = () => (
         <h3 className="mb-16 text-3xl">written in Typescript</h3>
       </div>
     </header>
-    <section>
-      <p className="mb-2">
+    <section className="flex flex-col gap-4">
+      <p>
         <span>An extensible </span>
-        <Link className="text-primary" target="_blank" href="https://nextjs.org/">
+        <StyledLink target="_blank" href="https://nextjs.org/">
           next.js
-        </Link>
+        </StyledLink>
         <span> starter for the </span>
-        <Link className="text-primary" target="_blank" href="https://react-leaflet.js.org/">
+        <StyledLink target="_blank" href="https://react-leaflet.js.org/">
           leaflet-react
-        </Link>
+        </StyledLink>
         <span> plugin. Written in </span>
-        <Link className="text-primary" target="_blank" href="https://www.typescriptlang.org/">
+        <StyledLink target="_blank" href="https://www.typescriptlang.org/">
           typescript
-        </Link>
+        </StyledLink>
         <span>, visually enhanced by </span>
-        <Link className="text-primary" target="_blank" href="https://tailwindcss.com/">
+        <StyledLink target="_blank" href="https://tailwindcss.com/">
           tailwind
-        </Link>
+        </StyledLink>
         <span> and </span>
-        <Link className="text-primary" target="_blank" href="https://lucide.dev/">
+        <StyledLink target="_blank" href="https://lucide.dev/">
           lucide icons
-        </Link>
+        </StyledLink>
         <span>. ✨</span>
       </p>
-      <p className="my-3">
+      <p>
         <span> 🤝 Feel free to contribute on </span>
         <Link
           href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"

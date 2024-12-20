@@ -1,12 +1,24 @@
 import { LatLngExpression } from 'leaflet'
 import { LocateFixed } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
+import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
 import { Category } from '#lib/MarkerCategories'
+import { CustomMarker } from '#map/LeafletMarker'
+import useMapContext from '#map/useMapContext'
 
-import { CustomMarker } from '../LeafletMarker'
-import useMapContext from '../useMapContext'
+const StyledLocateButton = rsc.button`
+  button
+  absolute
+  right-3
+  top-16
+  rounded
+  bg-white
+  p-2
+  text-dark
+  shadow-md
+`
 
 export const LocateButton = () => {
   const { map } = useMapContext()
@@ -30,14 +42,9 @@ export const LocateButton = () => {
 
   return (
     <>
-      <button
-        type="button"
-        style={{ zIndex: 400 }}
-        className="button absolute top-16 right-3 rounded bg-white p-2 text-dark shadow-md"
-        onClick={() => handleClick()}
-      >
+      <StyledLocateButton type="button" style={{ zIndex: 400 }} onClick={() => handleClick()}>
         <LocateFixed size={AppConfig.ui.mapIconSize} />
-      </button>
+      </StyledLocateButton>
       {userPosition && (
         <CustomMarker
           place={{

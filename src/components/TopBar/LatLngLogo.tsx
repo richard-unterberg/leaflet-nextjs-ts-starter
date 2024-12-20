@@ -1,8 +1,20 @@
 import Leaflet from 'leaflet'
 import { Compass } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import rsc from 'react-styled-classnames'
 
-import useMapContext from '#components/Map/useMapContext'
+import useMapContext from '#map/useMapContext'
+
+const StyledLogo = rsc.div`
+  flex
+  gap-2
+  font-black
+  leading-none
+  text-white
+  text-lg
+  md:text-2xl
+  md:leading-none
+`
 
 const LatLngLogo = () => {
   const { map } = useMapContext()
@@ -26,7 +38,7 @@ const LatLngLogo = () => {
   }, [map])
 
   return (
-    <div className="flex gap-2 text-lg font-black leading-none text-white md:text-2xl md:leading-none">
+    <StyledLogo>
       <div className="flex items-center">
         <Compass size={36} className="text-slate-50 md:hidden" />
         <Compass size={48} className="text-slate-50 hidden md:block" />
@@ -36,7 +48,7 @@ const LatLngLogo = () => {
         <br />
         {lng}
       </div>
-    </div>
+    </StyledLogo>
   )
 }
 

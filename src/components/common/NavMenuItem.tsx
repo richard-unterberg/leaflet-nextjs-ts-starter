@@ -1,6 +1,6 @@
-import { LucideProps } from 'lucide-react'
 import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
+import { ReactNode } from 'react'
 
 type LinkAnchorIntersection = LinkProps & HTMLAnchorElement
 
@@ -8,7 +8,7 @@ interface NavMenuItemProps {
   href: LinkAnchorIntersection['href']
   external?: boolean
   label: string
-  icon: LucideProps
+  icon: ReactNode
 }
 
 const NavMenuItem = ({ icon, href, external = false, label }: NavMenuItemProps) => {
@@ -17,9 +17,7 @@ const NavMenuItem = ({ icon, href, external = false, label }: NavMenuItemProps) 
   return (
     <li className={`${router.pathname === (href || '/') ? 'underline underline-offset-1' : ''}`}>
       <Link href={href} target={external ? '_blank' : '_self'} className="flex items-center gap-2">
-        <>
-          {icon} {label}
-        </>
+        {icon} {label}
       </Link>
     </li>
   )

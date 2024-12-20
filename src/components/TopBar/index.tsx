@@ -1,20 +1,31 @@
+import rsc from 'react-styled-classnames'
+
+import NavMenu from '#components/common/NavMenu'
 import LatLngLogo from '#components/TopBar/LatLngLogo'
 import { NavMenuVariant } from '#lib/AppConfig'
 
-import NavMenu from '../common/NavMenu'
+const StyledTopBar = rsc.div`
+  absolute
+  left-0
+  top-0
+  flex
+  h-20
+  w-full
+  items-center
+  bg-dark
+  p-3
+  shadow
+`
 
 const MapTopBar = () => (
-  <div
-    className="absolute left-0 top-0 flex h-20 w-full items-center bg-dark p-3 shadow"
-    style={{ zIndex: 1000 }}
-  >
+  <StyledTopBar style={{ zIndex: 1000 }}>
     <div className="flex w-full justify-between">
       <LatLngLogo />
       <div className="flex flex-col justify-center">
         <NavMenu variant={NavMenuVariant.TOPNAV} />
       </div>
     </div>
-  </div>
+  </StyledTopBar>
 )
 
 export default MapTopBar

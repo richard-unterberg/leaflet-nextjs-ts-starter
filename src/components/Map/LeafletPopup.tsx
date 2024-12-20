@@ -1,13 +1,37 @@
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { Popup, PopupProps } from 'react-leaflet'
+import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
 import { MarkerCategoriesValues } from '#lib/MarkerCategories'
 import { PlaceValues } from '#lib/Places'
 
-const MarkerIconWrapper = dynamic(() => import('#components/Map/LeafletMarker/MarkerIconWrapper'))
+const MarkerIconWrapper = dynamic(() => import('#map/LeafletMarker/MarkerIconWrapper'))
 const Button = dynamic(() => import('#components/common/Button'))
+
+const StyledNavButton = rsc.extend(Button)`
+  gap-2
+  text-white
+`
+
+const StyledCloseButton = rsc.extend(Button)`
+  absolute
+  right-3
+  top-3
+  inline-block
+  text-dark
+`
+
+const IconWrapper = rsc.div`
+  absolute
+  left-0
+  top-0
+  mt-5
+  flex
+  w-full
+  justify-center
+`
 
 interface LeafletPopupProps extends PopupProps {
   handlePopupClose: (active?: boolean) => void
@@ -32,40 +56,41 @@ const LeafletPopup = ({
       <div
         className="absolute bg-white shadow"
         style={{
-          // todo: rework the offsets at some point
+          // @todo: overly complicated
           marginLeft: `calc(-150px + ${AppConfig.ui.markerIconSize - 5}px)`,
-
-          // todo: some offest to align with the marker icon
           marginTop: -1,
         }}
       >
         <div className="flex flex-row justify-center pt-3" style={{ width: '300px' }}>
-          <Button
+          <StyledCloseButton
             className="absolute right-3 top-3 inline-block text-dark"
             onClick={() => handlePopupClose(false)}
             small
           >
             <X size={AppConfig.ui.markerIconSize} />
-          </Button>
-          <div className="absolute left-0 top-0 mt-5 flex w-full justify-center">
+          </StyledCloseButton>
+          <IconWrapper>
             <MarkerIconWrapper color={color} icon={icon} />
-          </div>
+          </IconWrapper>
           <div
             className="flex w-full flex-col justify-center p-3 pt-6 text-center"
-            style={{ marginTop: AppConfig.ui.markerIconSize * 2 + 8 }}
+            style={{
+              // @todo: overly complicated
+              marginTop: AppConfig.ui.markerIconSize * 2 + 8,
+            }}
           >
             <h3 className="m-0 text-lg font-bold leading-none">{title}</h3>
             <p className="m-0 text-secondary">{address}</p>
             {/* todo: new component for button group */}
             <div className="mt-6 flex flex-row justify-between gap-2 p-2">
-              <Button className="gap-2 bg-secondary text-white" onClick={() => handlePopupClose()} small>
+              <StyledNavButton className="bg-secondary" onClick={() => handlePopupClose()} small>
                 <ChevronLeft size={AppConfig.ui.menuIconSize} />
                 Close
-              </Button>
-              <Button className="gap-2 bg-primary text-white" onClick={() => handleOpenLocation()} small>
+              </StyledNavButton>
+              <StyledNavButton className="bg-primary" onClick={() => handleOpenLocation()} small>
                 Open
                 <ChevronRight size={AppConfig.ui.menuIconSize} />
-              </Button>
+              </StyledNavButton>
             </div>
           </div>
         </div>
