@@ -1,14 +1,14 @@
 import { LatLngExpression } from 'leaflet'
 import { LocateFixed } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import { AppConfig } from '#lib/AppConfig'
 import { Category } from '#lib/MarkerCategories'
 import { CustomMarker } from '#map/LeafletMarker'
 import useMapContext from '#map/useMapContext'
 
-const StyledLocateButton = rsc.button`
+const StyledLocateButton = rc.button`
   button
   absolute
   right-3

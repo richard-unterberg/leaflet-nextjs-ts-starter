@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
+import rc from 'react-classmate'
 import { useResizeDetector } from 'react-resize-detector'
-import rsc from 'react-styled-classnames'
 
 import MapTopBar from '#components/TopBar'
 import { AppConfig } from '#lib/AppConfig'
@@ -30,7 +30,7 @@ const LeafletMapContainer = dynamic(
   },
 )
 
-const StyledMapBase = rsc.div`
+const StyledMapBase = rc.div`
   absolute
   h-full
   w-full
@@ -38,11 +38,11 @@ const StyledMapBase = rsc.div`
   top-0
 `
 
-const StyledMapOuter = rsc.extend(StyledMapBase)`
+const StyledMapOuter = rc.extend(StyledMapBase)`
   overflow-hidden
 `
 
-const StyledMapInner = rsc.extend(StyledMapBase)<{ $isLoading: boolean }>`
+const StyledMapInner = rc.extend(StyledMapBase)<{ $isLoading: boolean }>`
   transition-opacity
   ${p => (p.$isLoading ? 'opacity-0' : 'opacity-1')}
 `

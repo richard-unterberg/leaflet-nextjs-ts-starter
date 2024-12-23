@@ -1,11 +1,11 @@
 import Leaflet from 'leaflet'
 import { Compass } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import useMapContext from '#map/useMapContext'
 
-const StyledLogo = rsc.div`
+const StyledLogo = rc.div`
   flex
   gap-2
   font-black

@@ -1,8 +1,8 @@
 import { LatLngExpression } from 'leaflet'
 import { Shrink } from 'lucide-react'
 import { useCallback, useState } from 'react'
+import rc from 'react-classmate'
 import { useMapEvents } from 'react-leaflet'
-import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
 import useMapContext from '#map/useMapContext'
@@ -11,7 +11,7 @@ interface StyledCenterButtonProps {
   $isTouched: boolean
 }
 
-const StyledCenterButton = rsc.button<StyledCenterButtonProps>`
+const StyledCenterButton = rc.button<StyledCenterButtonProps>`
   ${p => (p.$isTouched ? 'text-dark' : 'text-light')}
   button
   absolute
