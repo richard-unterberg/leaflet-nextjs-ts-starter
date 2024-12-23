@@ -106,8 +106,10 @@ const Home = () => (
       </p>
     </PageContent>
     <PageNav>
-      <h3 className="my-5 text-xl">Demo Content</h3>
-      <NavMenu />
+      <div>
+        <h3 className="my-5 text-xl">Demo Content</h3>
+        <NavMenu />
+      </div>
     </PageNav>
     <PageFooter>
       <div>
