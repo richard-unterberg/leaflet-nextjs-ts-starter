@@ -1,6 +1,6 @@
 import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import { AppConfig } from '#lib/AppConfig'
 
@@ -10,15 +10,15 @@ export interface MarkerIconWrapperProps {
   label?: string
 }
 
-const MarkerOuter = rsc.div`
+const MarkerOuter = rc.div`
   relative m-0 inline-flex p-0
 `
 
-const MarkerLabelColorBg = rsc.span`
+const MarkerLabelColorBg = rc.span`
   absolute -inset-2 rounded-full opacity-40
 `
 
-const MarkerInner = rsc.div`
+const MarkerInner = rc.div`
   relative
   inline-block
   rounded-full
@@ -27,7 +27,7 @@ const MarkerInner = rsc.div`
   text-white
 `
 
-const MarkerBadge = rsc.span`
+const MarkerBadge = rc.span`
   absolute
   -right-2
   -top-2
@@ -44,7 +44,7 @@ const MarkerBadge = rsc.span`
   text-xs
 `
 
-const LabelShadow = rsc.span<{ $label: boolean }>`
+const LabelShadow = rc.span<{ $label: boolean }>`
   ${p => (p.$label ? '-inset-2' : '-inset-1')}
   absolute
   rounded-full

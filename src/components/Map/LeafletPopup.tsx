@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import rc from 'react-classmate'
 import { Popup, PopupProps } from 'react-leaflet'
-import rsc from 'react-styled-classnames'
 
 import { AppConfig } from '#lib/AppConfig'
 import { MarkerCategoriesValues } from '#lib/MarkerCategories'
@@ -10,12 +10,12 @@ import { PlaceValues } from '#lib/Places'
 const MarkerIconWrapper = dynamic(() => import('#map/LeafletMarker/MarkerIconWrapper'))
 const Button = dynamic(() => import('#components/common/Button'))
 
-const StyledNavButton = rsc.extend(Button)`
+const StyledNavButton = rc.extend(Button)`
   gap-2
   text-white
 `
 
-const StyledCloseButton = rsc.extend(Button)`
+const StyledCloseButton = rc.extend(Button)`
   absolute
   right-3
   top-3
@@ -23,7 +23,7 @@ const StyledCloseButton = rsc.extend(Button)`
   text-dark
 `
 
-const IconWrapper = rsc.div`
+const IconWrapper = rc.div`
   absolute
   left-0
   top-0

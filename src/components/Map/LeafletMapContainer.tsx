@@ -1,12 +1,11 @@
 import { MapOptions } from 'leaflet'
-import { ComponentProps, useEffect } from 'react'
+import { useEffect } from 'react'
+import rc from 'react-classmate'
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import rsc, { RscBaseComponent } from 'react-styled-classnames'
 
 import useMapContext from '#map/useMapContext'
 
-type MapContainerType = ComponentProps<typeof MapContainer>
-const StyledMapContainer: RscBaseComponent<MapContainerType> = rsc.extend(MapContainer)`
+const StyledMapContainer = rc.extend(MapContainer)`
   absolute
   h-full
   w-full

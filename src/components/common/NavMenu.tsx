@@ -1,5 +1,5 @@
 import { Compass, Github, Home } from 'lucide-react'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import { AppConfig, NavMenuVariant } from '#lib/AppConfig'
 
@@ -9,7 +9,7 @@ interface StyledNavListProps extends React.HTMLAttributes<HTMLUListElement> {
   $type: NavMenuVariant
 }
 
-const StyledNavList = rsc.ul.variants<StyledNavListProps>({
+const StyledNavList = rc.ul.variants<StyledNavListProps>({
   base: 'flex',
   variants: {
     $type: {

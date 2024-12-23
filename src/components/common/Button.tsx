@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   small?: boolean
@@ -15,7 +15,7 @@ interface StyledButtonProps extends ButtonProps {
   $border?: boolean
 }
 
-const StyledButton = rsc.button.variants<StyledButtonProps>({
+const StyledButton = rc.button.variants<StyledButtonProps>({
   base: p => `
     ${p.$noGutter ? '!p-0' : ''}
     ${p.border ? 'border' : ''}

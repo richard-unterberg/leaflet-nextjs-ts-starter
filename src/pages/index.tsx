@@ -1,17 +1,54 @@
 import { Leaf } from 'lucide-react'
 import Head from 'next/head'
 import Link from 'next/link'
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import NavMenu from '#components/common/NavMenu'
 import { AppConfig } from '#lib/AppConfig'
 
-const StyledLink = rsc.extend(Link)`
+const PageContainer = rc.div`
+  container
+  p-3
+  mx-auto
+  max-w-2xl
+  max-md:max-w-none
+`
+
+const PageHeader = rc.header`
+  items-top
+  mt-10
+  gap-4
+  md:flex
+`
+
+const PageContent = rc.main`
+  flex
+  flex-col
+  gap-4
+`
+
+const PageNav = rc.nav`
+  grid
+  grid-cols-1
+  md:grid-cols-2
+`
+
+const PageFooter = rc.footer`
+  mt-16
+  flex
+  justify-between
+  rounded
+  bg-light
+  p-3
+  text-sm
+`
+
+const StyledLink = rc.extend(Link)`
   text-primary
 `
 
 const Home = () => (
-  <div className="container mx-auto max-w-2xl p-3 max-md:max-w-none">
+  <PageContainer>
     <Head>
       <title>Jumpstart your new leaflet mapping Project with next.js and typescript 🤩</title>
       <meta
@@ -25,7 +62,7 @@ const Home = () => (
       visually enhanced by tailwind and lucide-react icons."
       />
     </Head>
-    <header className="items-top mt-10 gap-4 md:flex">
+    <PageHeader>
       <span className="text-primary">
         <Leaf size={AppConfig.ui.bigIconSize} className="mt-2" />
       </span>
@@ -33,8 +70,8 @@ const Home = () => (
         <h2 className="text-4xl font-bold ">Next.js starter for leaflet-react</h2>
         <h3 className="mb-16 text-3xl">written in Typescript</h3>
       </div>
-    </header>
-    <section className="flex flex-col gap-4">
+    </PageHeader>
+    <PageContent>
       <p>
         <span>An extensible </span>
         <StyledLink target="_blank" href="https://nextjs.org/">
@@ -67,16 +104,14 @@ const Home = () => (
           Github
         </Link>
       </p>
-    </section>
-    <section className="grid grid-cols-1 md:grid-cols-2">
+    </PageContent>
+    <PageNav>
+      <h3 className="my-5 text-xl">Demo Content</h3>
+      <NavMenu />
+    </PageNav>
+    <PageFooter>
       <div>
-        <h3 className="my-5 text-xl">Demo Content</h3>
-        <NavMenu />
-      </div>
-    </section>
-    <footer className="mt-16 flex justify-between rounded bg-light p-3 text-sm">
-      <div>
-        2023, Richard Unterberg
+        2024, Richard Unterberg
         <br />
         <Link
           href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"
@@ -88,8 +123,8 @@ const Home = () => (
       <div className="text-primary">
         <Leaf size={AppConfig.ui.mapIconSize} className="mt-1" />
       </div>
-    </footer>
-  </div>
+    </PageFooter>
+  </PageContainer>
 )
 
 export default Home

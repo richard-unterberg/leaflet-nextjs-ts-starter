@@ -1,10 +1,10 @@
-import rsc from 'react-styled-classnames'
+import rc from 'react-classmate'
 
 import NavMenu from '#components/common/NavMenu'
 import LatLngLogo from '#components/TopBar/LatLngLogo'
 import { NavMenuVariant } from '#lib/AppConfig'
 
-const StyledTopBar = rsc.div`
+const StyledTopBar = rc.div`
   absolute
   left-0
   top-0
