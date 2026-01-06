@@ -33,15 +33,6 @@ Packed with useful components and hooks for using the map and create UI elements
 
 ### <a id="getting-started"></a> 🏎 Getting Started
 
-#### <a id="breaking-changes"></a> 💣 Breaking Changes introduced > v0.1.1
-
-In Version v0.1.2, I changed the path aliases to be more consistent with the ES standards from `@alias` to `#alias`. If pulling the template from v0.1.1 you have to change the import paths in your components and pages.
-
-```diff
-- import { SomeComponent } from '@components/useMap'
-+ import { SomeComponent } from '#components/useMap'
-```
-
 #### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
 
 Create new Github repo with vercel and deploy it within minutes. Could not be easier as hitting some buttons. Shipping of private repos is possible.
