@@ -9,7 +9,6 @@ Packed with useful components and hooks for using the map and create UI elements
 ### Table of Contents
 1. [Features](#features)
 2. [Getting started](#getting-started)
-    1. [Breaking Changes](#breaking-changes)
     2. [Clone & Deploy with Github and Vercel](#clone-deploy)
     3. [Manual install](#manual-install)
 3. [Start up](#start-up)
@@ -32,15 +31,6 @@ Packed with useful components and hooks for using the map and create UI elements
 - 🏡 custom ui components (locate me, center on markers)
 
 ### <a id="getting-started"></a> 🏎 Getting Started
-
-#### <a id="breaking-changes"></a> 💣 Breaking Changes introduced > v0.1.1
-
-In Version v0.1.2, I changed the path aliases to be more consistent with the ES standards from `@alias` to `#alias`. If pulling the template from v0.1.1 you have to change the import paths in your components and pages.
-
-```diff
-- import { SomeComponent } from '@components/useMap'
-+ import { SomeComponent } from '#components/useMap'
-```
 
 #### <a id="clone-deploy"></a> ⛴ Clone & Deploy with Github and Vercel
 
