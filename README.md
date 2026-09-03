@@ -6,6 +6,11 @@ Setup with [typescript](https://www.typescriptlang.org/) 👐.
 
 Packed with useful components and hooks for using the map and create UI elements for next(.js) mapping projects.
 
+## Help needed
+
+I'm currently to busy to update this repo from time to time.
+Please feel free and consider to contribute to keep the repo fresh.
+
 ### Table of Contents
 1. [Features](#features)
 2. [Getting started](#getting-started)
