@@ -1,4 +1,4 @@
-import { LatLngExpression, MapOptions } from 'leaflet'
+import type { LatLngExpression, MapOptions } from 'leaflet'
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import useMapContext from './useMapContext'
@@ -20,7 +20,7 @@ export const LeafletMapContainer: React.FC<
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_5aar_1_a7289c1f95fdee0bcfd6aba2"
       />
       {options.children}
     </MapContainer>

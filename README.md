@@ -24,7 +24,7 @@ Please feel free and consider to contribute to keep the repo fresh.
 
 ### <a id="features"></a> 🎇 Features
 
-- 🏇 mighty next.js 14 leaflet-react setup
+- 🏇 mighty next.js 15 leaflet-react setup
 - 😏 typescript + strict lint setup
 - 🔗 next.js ready route nav module
 - 🌤 modular demo content
